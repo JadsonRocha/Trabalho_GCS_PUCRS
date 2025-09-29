@@ -15,9 +15,14 @@ public class Application {
     }
 
     private void popularDadosIniciais() {
-        eventos.add(new Eventos("Show de Rock", "30/11/2025", 150.00, 200, "Daniel Callegari", 1));
-        eventos.add(new Eventos("Palestra de Tecnologia", "15/10/2025", 50.00, 100, "Equipe GCS", 2));
-        System.out.println("Dados iniciais foram carregados.");
+        Eventos e1 = new Eventos("Show de Rock", "30/11/2025", 150.00, 200, "Daniel Callegari", 1);
+        Eventos e2 = new Eventos("Palestra de Tecnologia", "15/10/2025", 50.00, 100, "Equipe GCS", 2);
+
+        Participantes p1 = new Participantes("Ana Silva", "111.222.333-44");
+        e2.getParticipantes().add(p1);
+
+        eventos.add(e1);
+        eventos.add(e2);
     }
 
     public void run() {
@@ -87,14 +92,31 @@ public class Application {
             return;
         }
 
+        if (eventoSelecionado == null) { return; }
+
         System.out.println("\nA editar o evento: " + eventoSelecionado.getNome());
         System.out.println("1. Editar evento");
+        System.out.println("2. Listar participantes");
         System.out.println("0. Voltar");
         System.out.print("Escolha: ");
         int opcao = Integer.parseInt(scanner.nextLine());
 
-        if (opcao == 1) {
-            editarEvento(eventoSelecionado);
+        switch (opcao) {
+            case 1: editarEvento(eventoSelecionado); break;
+            case 2: listarParticipantesDoEvento(eventoSelecionado); break;
+        }
+
+        
+    }
+
+    private void listarParticipantesDoEvento(Eventos evento) {
+        System.out.println("\n--- PARTICIPANTES DE: " + evento.getNome() + " ---");
+        if (evento.getParticipantes().isEmpty()) {
+            System.out.println("Nenhum participante neste evento.");
+        } else {
+            for (Participantes p : evento.getParticipantes()) {
+                System.out.println(p);
+            }
         }
     }
 
