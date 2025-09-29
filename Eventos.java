@@ -60,4 +60,9 @@ public class Eventos {
     public int getCodigo () {
         return codigo;
     }
+
+    @Override
+    public String toString() {
+        return "Evento [Codigo=" + codigo + ", Nome=" + nome + ", Data=" + data + ", Valor=R$" + valorIngresso + "]";
+    }
 }
