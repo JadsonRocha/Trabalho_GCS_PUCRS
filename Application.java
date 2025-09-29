@@ -30,6 +30,7 @@ public class Application {
             switch (opcao) {
                 case 1: listarEventos(); break;
                 case 2: buscarEventoPorNome(); break; 
+                case 3: gerirEvento(); break;
                 case 0: System.out.println("A encerrar o sistema..."); break;
                 default: System.out.println("Opção inválida.");
             }
@@ -44,6 +45,7 @@ public class Application {
         System.out.println("\n--- MENU ---");
         System.out.println("1. Listar eventos");
         System.out.println("2. Procurar evento por nome");
+        System.out.println("3. Editar um evento");
         System.out.println("0. Sair");
         System.out.print("Escolha: ");
     }
@@ -68,4 +70,44 @@ public class Application {
         }
     }
 
+    private void gerirEvento() {
+        System.out.print("Insere o código do evento para editar: ");
+        int codigo = Integer.parseInt(scanner.nextLine());
+
+        Eventos eventoSelecionado = null;
+        for (Eventos evento : eventos) {
+            if (evento.getCodigo() == codigo) {
+                eventoSelecionado = evento;
+                break;
+            }
+        }
+
+        if (eventoSelecionado == null) {
+            System.out.println("Evento não encontrado.");
+            return;
+        }
+
+        System.out.println("\nA editar o evento: " + eventoSelecionado.getNome());
+        System.out.println("1. Editar evento");
+        System.out.println("0. Voltar");
+        System.out.print("Escolha: ");
+        int opcao = Integer.parseInt(scanner.nextLine());
+
+        if (opcao == 1) {
+            editarEvento(eventoSelecionado);
+        }
+    }
+
+    private void editarEvento(Eventos evento) {
+        if (!evento.getParticipantes().isEmpty()) {
+            System.out.println("ERRO: Evento com participantes não pode ser editado.");
+            return;
+        }
+
+        System.out.print("Novo nome do evento (" + evento.getNome() + "): ");
+        String novoNome = scanner.nextLine();
+        evento.setNome(novoNome);
+
+        System.out.println("Evento editado com sucesso!");
+    }
 }
