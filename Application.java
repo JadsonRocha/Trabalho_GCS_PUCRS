@@ -28,14 +28,10 @@ public class Application {
             opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
-                case 1:
-                    listarEventos();
-                    break;
-                case 0:
-                    System.out.println("A encerrar o sistema...");
-                    break;
-                default:
-                    System.out.println("Opção inválida.");
+                case 1: listarEventos(); break;
+                case 2: buscarEventoPorNome(); break; 
+                case 0: System.out.println("A encerrar o sistema..."); break;
+                default: System.out.println("Opção inválida.");
             }
             if (opcao != 0) {
                System.out.println("\nPressiona Enter para continuar...");
@@ -47,6 +43,7 @@ public class Application {
     private void exibirMenuPrincipal() {
         System.out.println("\n--- MENU ---");
         System.out.println("1. Listar eventos");
+        System.out.println("2. Procurar evento por nome");
         System.out.println("0. Sair");
         System.out.print("Escolha: ");
     }
@@ -57,4 +54,18 @@ public class Application {
             System.out.println(evento);
         }
     }
+
+    private void buscarEventoPorNome() {
+        System.out.println("\n--- BUSCA DE EVENTO ---");
+        System.out.print("Digita parte do nome do evento: ");
+        String termoBusca = scanner.nextLine();
+
+        System.out.println("Eventos encontrados:");
+        for (Eventos evento : eventos) {
+            if (evento.getNome().toLowerCase().contains(termoBusca.toLowerCase())) {
+                System.out.println(evento);
+            }
+        }
+    }
+
 }
