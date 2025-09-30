@@ -28,11 +28,11 @@ public class Application {
         //em seguida vou criar o Switch case
         switch(opcao){
           case 1:
-            //Cadastrar novo evento
+            cadastraEvento();
             break;
           
           case 2:
-            // Listar todos Eventos
+            listaEventos();
             break;
           
           case 3:
@@ -55,5 +55,44 @@ public class Application {
     } while (opcao != 0);
   }
 
-  
+    public void cadastraEvento(){
+      Eventos e = new Eventos();
+
+      System.out.println("Nome do Evento: ");
+      e.setNome(entrada.nextLine());
+
+      System.out.println("Data do Evento: ");
+      e.setData(entrada.nextLine());
+      
+      System.out.println("Valor do Ingresso: ");
+      e.setValorIngresso(entrada.nextDouble());
+
+      System.out.println("Lotaçao maxima do Evento");
+      e.setLotacao(entrada.nextInt());
+
+      System.out.println("Responsável do Evento");
+      e.setResponsavel(entrada.next());
+
+      System.out.println("Codigo do Evento");
+      e.setCodigo(entrada.nextInt());
+      contadorCodigo++;
+      
+      eventos.add(e);
+    }
+
+    public void listaEventos(){
+      int contadorEventos = 0;
+      for(Eventos e : eventos){
+        if(e instanceof Eventos){
+          System.out.println(e);
+          contadorEventos++;
+          System.out.println("\n-------------------------------- \n");
+          
+        }
+        
+      }
+    }
+
+
+
 }

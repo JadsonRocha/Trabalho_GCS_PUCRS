@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 public class Eventos {
     private String nome;
@@ -15,6 +14,9 @@ public class Eventos {
         this.lotacao = lotacao;
         this.responsavel = responsavel;
         this.codigo = codigo;
+    }
+
+    public Eventos() {
     }
 
     public String getNome () {
@@ -60,4 +62,21 @@ public class Eventos {
     public int getCodigo () {
         return codigo;
     }
+
+    public void setCodigo (int codigo) {
+        this.codigo = codigo;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " nome='" + getNome() + "'" +
+            ", data='" + getData() + "'" +
+            ", valorIngresso='" + getValorIngresso() + "'" +
+            ", lotacao='" + getLotacao() + "'" +
+            ", responsavel='" + getResponsavel() + "'" +
+            ", codigo='" + getCodigo() + "'" +
+            "}";
+    }
+    
 }
