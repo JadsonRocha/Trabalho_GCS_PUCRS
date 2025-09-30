@@ -10,6 +10,6 @@ public class Bilheteria {
     }
 
     public boolean realizarVenda(){
-        System.out.println("insira o nome do evento");
+
     }
 }

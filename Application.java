@@ -15,8 +15,8 @@ public class Application {
     }
 
     private void popularDadosIniciais() {
-        Eventos e1 = new Eventos("Show de Rock", "30/11/2025", 150.00, 200, "Daniel Callegari", 1);
-        Eventos e2 = new Eventos("Palestra de Tecnologia", "15/10/2025", 50.00, 100, "Equipe GCS", 2);
+        Eventos e1 = new Eventos("Show de Rock", "30/11/2025", 150.00, 200, "Daniel Callegari");
+        Eventos e2 = new Eventos("Palestra de Tecnologia", "15/10/2025", 50.00, 100, "Equipe GCS");
 
         Participantes p1 = new Participantes("Ana Silva", "111.222.333-44");
         e2.getParticipantes().add(p1);
@@ -82,9 +82,6 @@ public class Application {
 
         System.out.println("Responsável do Evento: ");
         e.setResponsavel(scanner.next());
-
-        System.out.println("Codigo do Evento: ");
-
 
         eventos.add(e);
     }
