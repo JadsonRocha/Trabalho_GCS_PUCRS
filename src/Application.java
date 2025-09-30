@@ -9,7 +9,7 @@ public class Application {
   public Application() {
     this.eventos = new ArrayList<>();
     this.entrada = new Scanner(System.in);
-    this.contadorCodigo = 1;
+    this.contadorCodigo = 0;
 
   }
   public void executar() {
@@ -67,13 +67,13 @@ public class Application {
       System.out.println("Valor do Ingresso: ");
       e.setValorIngresso(entrada.nextDouble());
 
-      System.out.println("Lotaçao maxima do Evento");
+      System.out.println("Lotaçao maxima do Evento:");
       e.setLotacao(entrada.nextInt());
 
-      System.out.println("Responsável do Evento");
+      System.out.println("Responsável do Evento: ");
       e.setResponsavel(entrada.next());
 
-      System.out.println("Codigo do Evento");
+      System.out.println("Codigo do Evento: ");
       e.setCodigo(entrada.nextInt());
       contadorCodigo++;
       
