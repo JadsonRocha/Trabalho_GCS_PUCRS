@@ -33,10 +33,20 @@ public class Application {
             opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
-                case 1: listarEventos(); break;
-                case 2: buscarEventoPorNome(); break; 
-                case 3: gerirEvento(); break;
-                case 0: System.out.println("A encerrar o sistema..."); break;
+                case 1:
+
+                case 2: listarEventos();
+                break;
+
+                case 3: buscarEventoPorNome();
+                break;
+
+                case 4: gerirEvento();
+                break;
+
+                case 0: System.out.println("A encerrar o sistema...");
+                break;
+
                 default: System.out.println("Opção inválida.");
             }
             if (opcao != 0) {
@@ -53,6 +63,30 @@ public class Application {
         System.out.println("3. Editar um evento");
         System.out.println("0. Sair");
         System.out.print("Escolha: ");
+    }
+
+    public void cadastraEvento(){
+        Eventos e = new Eventos();
+
+        System.out.println("Nome do Evento: ");
+        e.setNome(scanner.nextLine());
+
+        System.out.println("Data do Evento: ");
+        e.setData(scanner.nextLine());
+
+        System.out.println("Valor do Ingresso: ");
+        e.setValorIngresso(scanner.nextDouble());
+
+        System.out.println("Lotaçao maxima do Evento:");
+        e.setLotacao(scanner.nextInt());
+
+        System.out.println("Responsável do Evento: ");
+        e.setResponsavel(scanner.next());
+
+        System.out.println("Codigo do Evento: ");
+
+
+        eventos.add(e);
     }
 
     private void listarEventos() {

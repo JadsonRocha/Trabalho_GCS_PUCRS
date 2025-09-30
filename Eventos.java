@@ -8,7 +8,7 @@ public class Eventos {
     private int lotacao;
     private String responsavel;
     private int codigo;
-    private List<Participantes> participantes;
+    private Bilheteria bilheteria;
 
     public Eventos (String nome, String data, double valorIngresso, int lotacao, String responsavel, int codigo) {
         this.nome = nome;
@@ -17,7 +17,6 @@ public class Eventos {
         this.lotacao = lotacao;
         this.responsavel = responsavel;
         this.codigo = codigo;
-        this.participantes = new ArrayList<>();
     }
 
     public String getNome () {
@@ -62,10 +61,6 @@ public class Eventos {
 
     public int getCodigo () {
         return codigo;
-    }
-
-    public List<Participantes> getParticipantes() {
-        return participantes;
     }
 
     @Override

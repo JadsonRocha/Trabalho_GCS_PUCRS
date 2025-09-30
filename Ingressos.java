@@ -2,9 +2,12 @@ public class Ingressos {
 
     private boolean especial;
     private String codigo;
+    private Participantes Comprador;
 
-    public Ingressos(int codigo, boolean especial){
-        this.especial = especial;
+    public Ingressos(){
+        especial = false;
+        codigo = "";
+        Comprador = null;
     }
 
     public boolean isEspecial () {
@@ -14,4 +17,21 @@ public class Ingressos {
     public void setEspecial (boolean especial) {
         this.especial = especial;
     }
+
+    public String getCodigo () {
+        return codigo;
+    }
+
+    public void setCodigo (String codigo) {
+        this.codigo = codigo;
+    }
+
+    public Participantes getComprador () {
+        return Comprador;
+    }
+
+    public void setComprador (Participantes comprador) {
+        Comprador = comprador;
+    }
+
 }
