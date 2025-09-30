@@ -34,11 +34,14 @@ public class Application {
 
             switch (opcao) {
                 case 1:
+                    cadastraEvento();
+                    break;
 
                 case 2: listarEventos();
                 break;
 
-                case 3: buscarEventoPorNome();
+                case 3:
+                    buscarEventoPorNome();
                 break;
 
                 case 4: gerirEvento();
@@ -68,43 +71,9 @@ public class Application {
     public void cadastraEvento(){
         Eventos e = new Eventos();
 
-        System.out.println("Nome do Evento: ");
-        e.setNome(scanner.nextLine());
 
-        System.out.println("Data do Evento: ");
-        e.setData(scanner.nextLine());
 
-        System.out.println("Valor do Ingresso: ");
-        e.setValorIngresso(scanner.nextDouble());
 
-        System.out.println("Lotaçao maxima do Evento:");
-        e.setLotacao(scanner.nextInt());
-
-        System.out.println("Responsável do Evento: ");
-        e.setResponsavel(scanner.next());
-
-        eventos.add(e);
-    }
-
-    private void listarEventos() {
-        System.out.println("\n--- LISTA DE EVENTOS ---");
-        for (Eventos evento : eventos) {
-            System.out.println(evento);
-        }
-    }
-
-    private void buscarEventoPorNome() {
-        System.out.println("\n--- BUSCA DE EVENTO ---");
-        System.out.print("Digita parte do nome do evento: ");
-        String termoBusca = scanner.nextLine();
-
-        System.out.println("Eventos encontrados:");
-        for (Eventos evento : eventos) {
-            if (evento.getNome().toLowerCase().contains(termoBusca.toLowerCase())) {
-                System.out.println(evento);
-            }
-        }
-    }
 
     private void gerirEvento() {
         System.out.print("Insere o código do evento para editar: ");
@@ -137,7 +106,7 @@ public class Application {
             case 2: listarParticipantesDoEvento(eventoSelecionado); break;
         }
 
-        
+
     }
 
     private void listarParticipantesDoEvento(Eventos evento) {

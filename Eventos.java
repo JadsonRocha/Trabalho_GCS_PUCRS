@@ -10,6 +10,15 @@ public class Eventos {
     private int lotacao;
     private String responsavel;
 
+    public Eventos () {
+        this.codigo = 0;
+        this.nome = "";
+        this.data = "";
+        this.valorIngresso = 0.0;
+        this.lotacao = 0;
+        this.responsavel = "";
+    }
+
     public Eventos(String nome, String data, double valorIngresso, int lotacao, String responsavel) {
         this.nome = nome;
         this.data = data;
