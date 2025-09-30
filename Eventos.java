@@ -1,70 +1,75 @@
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.Random;
 
 public class Eventos {
+
+    private int codigo;
     private String nome;
     private String data;
     private double valorIngresso;
     private int lotacao;
     private String responsavel;
-    private int codigo;
-    private Bilheteria bilheteria;
 
-    public Eventos (String nome, String data, double valorIngresso, int lotacao, String responsavel, int codigo) {
+    public Eventos(String nome, String data, double valorIngresso, int lotacao, String responsavel) {
         this.nome = nome;
         this.data = data;
         this.valorIngresso = valorIngresso;
         this.lotacao = lotacao;
         this.responsavel = responsavel;
-        this.codigo = codigo;
+        this.codigo = geraCodigo();
     }
 
-    public String getNome () {
+    private static int geraCodigo() {
+        Random random = new Random();
+        return random.nextInt(900) + 100;
+    }
+
+    public int getCodigo() {
+        return this.codigo;
+    }
+
+    public String getNome() {
         return nome;
     }
 
-    public void setNome (String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public String getData () {
+    public String getData() {
         return data;
     }
 
-    public void setData (String data) {
+    public void setData(String data) {
         this.data = data;
     }
 
-    public double getValorIngresso () {
+    public double getValorIngresso() {
         return valorIngresso;
     }
 
-    public void setValorIngresso (double valorIngresso) {
+    public void setValorIngresso(double valorIngresso) {
         this.valorIngresso = valorIngresso;
     }
 
-    public int getLotacao () {
+    public int getLotacao() {
         return lotacao;
     }
 
-    public void setLotacao (int lotacao) {
+    public void setLotacao(int lotacao) {
         this.lotacao = lotacao;
     }
 
-    public String getResponsavel () {
+    public String getResponsavel() {
         return responsavel;
     }
 
-    public void setResponsavel (String responsavel) {
+    public void setResponsavel(String responsavel) {
         this.responsavel = responsavel;
-    }
-
-    public int getCodigo () {
-        return codigo;
     }
 
     @Override
     public String toString() {
-        return "Evento [Codigo=" + codigo + ", Nome=" + nome + ", Data=" + data + ", Valor=R$" + valorIngresso + "]";
+        return "Evento [Codigo=" + this.codigo + ", Nome=" + this.nome + ", Data=" + this.data + ", Valor=R$" + valorIngresso + "]";
     }
 }
