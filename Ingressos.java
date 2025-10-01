@@ -2,12 +2,13 @@ public class Ingressos {
 
     private boolean especial;
     private String codigo;
-    private Participantes Comprador;
+    private Participantes Participante;
+    private boolean foiUtilizado;
 
-    public Ingressos(){
-        especial = false;
-        codigo = "";
-        Comprador = null;
+    public Ingressos(Participantes comprador, String codigo, Boolean especial){
+        especial = especial;
+        codigo = codigo;
+        Participante = comprador;
     }
 
     public boolean isEspecial () {
@@ -26,12 +27,19 @@ public class Ingressos {
         this.codigo = codigo;
     }
 
-    public Participantes getComprador () {
-        return Comprador;
+    public Participantes getParticipante () {
+        return Participante;
     }
 
-    public void setComprador (Participantes comprador) {
-        Comprador = comprador;
+    public void setParticipante (Participantes participante) {
+        Participante = participante;
     }
 
+    public boolean getfoiUtilizado () {
+        return foiUtilizado;
+    }
+
+    public void setfoiUtilizado (boolean foiUtilizado) {
+        foiUtilizado = foiUtilizado;
+    }
 }

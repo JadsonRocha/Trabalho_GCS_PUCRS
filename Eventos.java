@@ -9,6 +9,7 @@ public class Eventos {
     private double valorIngresso;
     private int lotacao;
     private String responsavel;
+    private Bilheteria bilheteria; // para manter o código de eventos mais enxuto e claro;
 
     public Eventos () {
         this.codigo = 0;
@@ -17,6 +18,7 @@ public class Eventos {
         this.valorIngresso = 0.0;
         this.lotacao = 0;
         this.responsavel = "";
+        this.bilheteria = new Bilheteria(this); //recebe como parametro o próprio evento
     }
 
     public Eventos(String nome, String data, double valorIngresso, int lotacao, String responsavel) {

@@ -3,27 +3,16 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Application {
-    private List<Eventos> eventos;
-    private List<Participantes> participantes;
+    private GestaoEventos gestao;
+
     private Scanner scanner;
 
     public Application() {
-        this.eventos = new ArrayList<>();
-        this.participantes = new ArrayList<>();
+        this.gestaoEventos = new GestaoEventos();
         this.scanner = new Scanner(System.in);
         popularDadosIniciais(); 
     }
 
-    private void popularDadosIniciais() {
-        Eventos e1 = new Eventos("Show de Rock", "30/11/2025", 150.00, 200, "Daniel Callegari");
-        Eventos e2 = new Eventos("Palestra de Tecnologia", "15/10/2025", 50.00, 100, "Equipe GCS");
-
-        Participantes p1 = new Participantes("Ana Silva", "111.222.333-44");
-        e2.getParticipantes().add(p1);
-
-        eventos.add(e1);
-        eventos.add(e2);
-    }
 
     public void run() {
         System.out.println("Bem-vindo ao Sistema de Gestão de Eventos!");
@@ -37,7 +26,7 @@ public class Application {
                     cadastraEvento();
                     break;
 
-                case 2: listarEventos();
+                case 2: GestaoEventos.listarEventos();
                 break;
 
                 case 3:
@@ -68,68 +57,38 @@ public class Application {
         System.out.print("Escolha: ");
     }
 
-    public void cadastraEvento(){
-        Eventos e = new Eventos();
+    public void cadastraEvento() {
+        System.out.println("---REALIZANDO CADASTRO DE EVENTO---");
+        System.out.println("Nome do Evento: ");
+        String nome = scanner.nextLine();
 
+        System.out.println("Data do Evento: ");
 
+        System.out.println("dia: ");
+        S
 
+        System.out.println("Valor do Ingresso: ");
+        e.setValorIngresso(valor);
 
+        System.out.println("Lotaçao maxima do Evento:");
+        e.setLotacao(lotacao);
 
-    private void gerirEvento() {
-        System.out.print("Insere o código do evento para editar: ");
-        int codigo = Integer.parseInt(scanner.nextLine());
+        System.out.println("Responsável do Evento: ");
+        e.setResponsavel(responsavel);
 
-        Eventos eventoSelecionado = null;
-        for (Eventos evento : eventos) {
-            if (evento.getCodigo() == codigo) {
-                eventoSelecionado = evento;
-                break;
-            }
-        }
-
-        if (eventoSelecionado == null) {
-            System.out.println("Evento não encontrado.");
-            return;
-        }
-
-        if (eventoSelecionado == null) { return; }
-
-        System.out.println("\nA editar o evento: " + eventoSelecionado.getNome());
-        System.out.println("1. Editar evento");
-        System.out.println("2. Listar participantes");
-        System.out.println("0. Voltar");
-        System.out.print("Escolha: ");
-        int opcao = Integer.parseInt(scanner.nextLine());
-
-        switch (opcao) {
-            case 1: editarEvento(eventoSelecionado); break;
-            case 2: listarParticipantesDoEvento(eventoSelecionado); break;
-        }
-
-
+        eventos.add(e);
+        return true;
     }
 
-    private void listarParticipantesDoEvento(Eventos evento) {
-        System.out.println("\n--- PARTICIPANTES DE: " + evento.getNome() + " ---");
-        if (evento.getParticipantes().isEmpty()) {
-            System.out.println("Nenhum participante neste evento.");
-        } else {
-            for (Participantes p : evento.getParticipantes()) {
-                System.out.println(p);
-            }
+        private void popularDadosIniciais() {
+            Eventos e1 = new Eventos("Show de Rock", "30/11/2025", 150.00, 200, "Daniel Callegari");
+            Eventos e2 = new Eventos("Palestra de Tecnologia", "15/10/2025", 50.00, 100, "Equipe GCS");
+
+            Participantes p1 = new Participantes("Ana Silva", "111.222.333-44");
+            e2.getParticipantes().add(p1);
+
+            eventos.add(e1);
+            eventos.add(e2);
+
         }
     }
-
-    private void editarEvento(Eventos evento) {
-        if (!evento.getParticipantes().isEmpty()) {
-            System.out.println("ERRO: Evento com participantes não pode ser editado.");
-            return;
-        }
-
-        System.out.print("Novo nome do evento (" + evento.getNome() + "): ");
-        String novoNome = scanner.nextLine();
-        evento.setNome(novoNome);
-
-        System.out.println("Evento editado com sucesso!");
-    }
-}
