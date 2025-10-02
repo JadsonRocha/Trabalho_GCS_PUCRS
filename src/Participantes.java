@@ -1,3 +1,5 @@
+package src;
+
 public class Participantes {
     private String nome;
     private String cpf;

@@ -1,9 +1,11 @@
+package src;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Eventos {
 
+    private static int contador = 100;
     private int codigo;
     private String nome;
     private String data;
@@ -33,6 +35,7 @@ public class Eventos {
         this.codigo = geraCodigo();
     }
 
+
     private static int geraCodigo() {
         Random random = new Random();
         return random.nextInt(900) + 100;
@@ -43,6 +46,7 @@ public class Eventos {
     }
 
     public String getNome() {
+
         return nome;
     }
 
@@ -82,8 +86,21 @@ public class Eventos {
         this.responsavel = responsavel;
     }
 
+
+    public void setCodigo (int codigo) {
+        this.codigo = codigo;
+    }
+
     @Override
     public String toString() {
-        return "Evento [Codigo=" + this.codigo + ", Nome=" + this.nome + ", Data=" + this.data + ", Valor=R$" + valorIngresso + "]";
+        return "{" +
+            " Nome='" + getNome() + "'" +
+            ", Data='" + getData() + "'" +
+            ", ValorIngresso='" + getValorIngresso() + "'" +
+            ", Lotacao='" + getLotacao() + "'" +
+            ", Responsavel='" + getResponsavel() + "'" +
+            ", Codigo='" + getCodigo() + "'" +
+            "}";
     }
 }
+
