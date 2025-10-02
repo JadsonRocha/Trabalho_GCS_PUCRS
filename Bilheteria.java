@@ -3,12 +3,15 @@ import java.util.ArrayList;
 public class Bilheteria {
     private Eventos eventos;
     private ArrayList<Ingressos> ingressos;
-    private Participantes participantes;
 
     public Bilheteria(Eventos evento){
         eventos = evento;
         ingressos = new ArrayList<>(evento.getLotacao());
+    }
 
+    public void adicionarParticipante(String nome, String cpf){
+        Participantes p = new Participantes(nome, cpf);
+        participantes.add(p);
     }
 
     public boolean realizarVenda(Participantes participante, boolean especial){ /** fazer verificação de Especiais **/

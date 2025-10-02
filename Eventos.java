@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Eventos {
@@ -9,7 +10,8 @@ public class Eventos {
     private double valorIngresso;
     private int lotacao;
     private String responsavel;
-    private Bilheteria bilheteria; // para manter o código de eventos mais enxuto e claro;
+    private ArrayList<Participantes> participantes;
+    private Bilheteria bilheteria; // para manter o código de eventos mais enxuto e claro botei bilheteria como um atributo;
 
     public Eventos () {
         this.codigo = 0;
@@ -19,6 +21,7 @@ public class Eventos {
         this.lotacao = 0;
         this.responsavel = "";
         this.bilheteria = new Bilheteria(this); //recebe como parametro o próprio evento
+        participantes = new ArrayList<>();
     }
 
     public Eventos(String nome, String data, double valorIngresso, int lotacao, String responsavel) {

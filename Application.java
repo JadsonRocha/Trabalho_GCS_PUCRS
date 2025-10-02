@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Application {
     private GestaoEventos gestao;
-
     private Scanner scanner;
 
     public Application() {
-        this.gestaoEventos = new GestaoEventos();
+        this.gestao = new GestaoEventos();
         this.scanner = new Scanner(System.in);
         popularDadosIniciais(); 
     }
@@ -26,11 +26,10 @@ public class Application {
                     cadastraEvento();
                     break;
 
-                case 2: GestaoEventos.listarEventos();
+                case 2: gestao.listarEventos();
                 break;
 
                 case 3:
-                    buscarEventoPorNome();
                 break;
 
                 case 4: gerirEvento();
@@ -62,33 +61,26 @@ public class Application {
         System.out.println("Nome do Evento: ");
         String nome = scanner.nextLine();
 
-        System.out.println("Data do Evento: ");
-
-        System.out.println("dia: ");
-        S
+        System.out.println("Data do Evento no formato (dd/mm/aaaa)");
+        String data = scanner.nextLine();
 
         System.out.println("Valor do Ingresso: ");
-        e.setValorIngresso(valor);
+        Double valor = scanner.nextDouble();
 
         System.out.println("Lotaçao maxima do Evento:");
-        e.setLotacao(lotacao);
+        int lotacao = scanner.nextInt();
 
         System.out.println("Responsável do Evento: ");
-        e.setResponsavel(responsavel);
+        String responsavel = scanner.nextLine();
 
-        eventos.add(e);
-        return true;
+        gestao.cadastrarEvento(nome, data, valor, lotacao, responsavel);
     }
 
         private void popularDadosIniciais() {
-            Eventos e1 = new Eventos("Show de Rock", "30/11/2025", 150.00, 200, "Daniel Callegari");
-            Eventos e2 = new Eventos("Palestra de Tecnologia", "15/10/2025", 50.00, 100, "Equipe GCS");
+            gestao.cadastrarEvento("Show de Rock", "30/11/2025", 150.00, 200, "Daniel Callegari");
+            gestao.cadastrarEvento("Palestra de Tecnologia", "15/10/2025", 50.00, 100, "Equipe GCS");
 
-            Participantes p1 = new Participantes("Ana Silva", "111.222.333-44");
-            e2.getParticipantes().add(p1);
-
-            eventos.add(e1);
-            eventos.add(e2);
+            gestao.
 
         }
     }

@@ -6,6 +6,7 @@ public class GestaoEventos {
 
     public GestaoEventos(){
         eventos = new ArrayList<>();
+
     }
 
     public boolean cadastrarEvento(String nome, String data, double valor, int lotacao, String responsavel){
@@ -71,9 +72,6 @@ public class GestaoEventos {
         evento.setNome(novoNome);
         System.out.print("Novo nome do evento (" + evento.getNome() + ")");
     }
-
-
-
 
    // if (!evento.getParticipantes().isEmpty()) {
    //     System.out.println("ERRO: Evento com participantes não pode ser editado.");
