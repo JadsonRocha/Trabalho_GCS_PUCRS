@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class GestaoEventos {
     private ArrayList<Eventos> eventos;
-    private Bilheteria bilheteria;
 
     public GestaoEventos(){
         eventos = new ArrayList<>();
@@ -37,27 +36,35 @@ public class GestaoEventos {
 
         else{
             eventos.remove(evento);
+            System.out.println("Evento removido: " + evento);
             return true;
         }
     }
 
     public void buscarEventoPorNome(String termoBusca) {
-
+        boolean encontrado = false;
         System.out.println("Eventos encontrados:");
+        
         for (Eventos evento : eventos) {
             if (evento.getNome().toLowerCase().contains(termoBusca.toLowerCase())) {
                 System.out.println(evento);
             }
+            if(!encontrado) {
+            System.out.println("Nenhum evento encontrado para: " + termoBusca);
+    }
         }
     }
 
-    public Eventos buscarEventoPorCodigo(int cod){
-        for (Eventos evento : eventos) {
+    public Eventos buscarEventoPorCodigo(int cod){ 
+       for (Eventos evento : eventos) {
             if(evento.getCodigo() == cod){
                 return evento;
             }
         }
+
+            System.out.println("Nenhum evento encontrado com o código: " + cod);
         return null;
+        
     }
 
     public ArrayList<Eventos> listarEventos() {
@@ -71,60 +78,4 @@ public class GestaoEventos {
         evento.setNome(novoNome);
         System.out.print("Novo nome do evento (" + evento.getNome() + ")");
     }
-
-
-
-
-   // if (!evento.getParticipantes().isEmpty()) {
-   //     System.out.println("ERRO: Evento com participantes não pode ser editado.");
-    }
-
-
-
-//    private void gerirEvento(int codigo) {
-//
-//    Eventos eventoSelecionado = null;
-//        for (Eventos evento : eventos) {
-//        if (evento.getCodigo() == codigo) {
-//            eventoSelecionado = evento;
-//            break;
-//        }
-//    }
-//
-//        if (eventoSelecionado == null) {
-//        System.out.println("Evento não encontrado.");
-//        return;
-//    }
-//
-//        if (eventoSelecionado == null) { return;}
-//
-//        System.out.println("\nA editar o evento: " + eventoSelecionado.getNome());
-//        System.out.println("1. Editar evento");
-//        System.out.println("2. Listar participantes");
-//        System.out.println("0. Voltar");
-//        System.out.print("Escolha: ");
-//    int opcao = Integer.parseInt(scanner.nextLine());
-//
-//        switch (opcao) {
-//        case 1: editarEvento(eventoSelecionado); break;
-//        case 2: listarParticipantesDoEvento(eventoSelecionado); break;
-//    }
-
-
-
-
-//private void listarParticipantesDoEvento(Eventos evento) {
-//    System.out.println("\n--- PARTICIPANTES DE: " + evento.getNome() + " ---");
-//    if (evento.getParticipantes().isEmpty()) {
-//        System.out.println("Nenhum participante neste evento.");
-//    } else {
-//        for (Participantes p : evento.getParticipantes()) {
-//            System.out.println(p);
-//        }
-//    }
-//}
-//
-//
-//}
-
-
+}
