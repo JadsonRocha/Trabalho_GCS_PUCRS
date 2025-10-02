@@ -1,50 +1,74 @@
+package src;
+
 import java.util.ArrayList;
 
 public class Bilheteria {
     private Eventos eventos;
     private ArrayList<Ingressos> ingressos;
-    private Participantes participantes;
+    private ArrayList<Participantes> participantes;
+
+    private final int lotacaoMax;
+    private final int maxEspeciais;
+    private final int maxNormais;
+    private int vendidosEspeciais = 0;
+    private int vendidosNormais = 0;
+    private int seqTotal = 0;
 
     public Bilheteria(Eventos evento){
-        eventos = evento;
-        ingressos = new ArrayList<>(evento.getLotacao());
+        this.eventos = evento;
+        this.lotacaoMax = evento.getLotacao();
+        this.maxEspeciais = (int) Math.ceil(this.lotacaoMax * 0.15);
+        this.maxNormais   = this.lotacaoMax - this.maxEspeciais;
 
+        this.ingressos = new ArrayList<>(evento.getLotacao());
+        this.participantes = new ArrayList<>();
     }
 
-    public boolean realizarVenda(Participantes participante, boolean especial){ /** fazer verificação de Especiais **/
-        int lotacaoMax = this.eventos.getLotacao();
-        int qtdIngressos = ingressos.size();
-        String codIngresso;
-        if(qtdIngressos >= lotacaoMax){
-            return false;
-        }
-        else{
-            if(!especial){ //verifica se o ingresso é especial e add o "E" no cod do ingresso se necessário
-
-                codIngresso = String.valueOf(eventos.getCodigo() + "-" + (ingressos.size() + 1)); /** ajustar cod para 3 digitos no fim**/
-            }
-            else{
-                codIngresso = String.valueOf(eventos.getCodigo() + "-" + (ingressos.size() + 1)+ "E");
-                }
-            Ingressos ingresso = new Ingressos(participante, codIngresso, false);
-            ingressos.add(ingresso);
-            return true;
-        }
+    public void adicionarParticipante(String nome, String cpf){
+        Participantes p = new Participantes(nome, cpf);
+        participantes.add(p);
     }
+
+
+    public boolean realizarVenda(Participantes participante, boolean especial){
+        if ((vendidosNormais + vendidosEspeciais) >= lotacaoMax) return false;
+
+        if (especial) {
+            if (vendidosEspeciais >= maxEspeciais) return false;
+        } else {
+            if (vendidosNormais >= maxNormais) return false;
+        }
+
+        seqTotal += 1;
+        String codIngresso = String.format("%d-%03d%s",
+                eventos.getCodigo(),
+                seqTotal,
+                (especial ? "E" : ""));
+
+        Ingressos ingresso = new Ingressos(participante, codIngresso, especial);
+        ingressos.add(ingresso);
+
+        if (especial) vendidosEspeciais++; else vendidosNormais++;
+        return true;
+    }
+
 
     public boolean registrarEntrada(String codigoIngresso) {
         for (Ingressos ingresso : ingressos) {
             if (ingresso.getCodigo().equals(codigoIngresso)) {
                 if (ingresso.getfoiUtilizado()) {
-                    //System.out.println("Ingresso já utilizado.");
-                    return false;
+                    return true;
                 }
                 ingresso.setfoiUtilizado(true);
-                //System.out.println("Entrada registrada para: " + ingresso.getParticipante().getNome());
                 return true;
             }
         }
-        //System.out.println("Ingresso não encontrado.");
         return false;
     }
+
+    public int getVendidosNormais()   { return vendidosNormais; }
+    public int getVendidosEspeciais() { return vendidosEspeciais; }
+    public int getMaxNormais()        { return maxNormais; }
+    public int getMaxEspeciais()      { return maxEspeciais; }
+    public int getLotacaoMax()        { return lotacaoMax; }
 }
