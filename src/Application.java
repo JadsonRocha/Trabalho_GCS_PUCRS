@@ -42,6 +42,9 @@ public class Application {
                 case 0:
                     System.out.println("Sistema finalizado...");
                     break;
+                case 7:
+                    relatorioIngressos();
+                    break;
                 default:
                     System.out.println("Seleção inválida. Tente novamente.");
                     break;
@@ -57,6 +60,7 @@ public class Application {
         System.out.println("[4] Gerar relatório mensal");
         System.out.println("[5] Cancelar Evento");
         System.out.println("[6] Cancelar Ingresso");
+        System.out.println("[7] Relatório de Ingressos por Evento");
         System.out.println("[0] Sair");
         
     }
@@ -168,6 +172,56 @@ private void cancelarIngresso() {
         System.out.println("Falha ao cancelar o ingresso.");
     }
 }
+
+private void relatorioIngressos() {
+        System.out.println("\n--- RELATÓRIO DE INGRESSOS POR EVENTO ---");
+        
+        if (gestao.listarEventos().isEmpty()) {
+            System.out.println("Não existem eventos cadastrados.");
+            return;
+        }
+
+        System.out.print("Informe o código do evento: ");
+        int codEvento = entrada.nextInt();
+        entrada.nextLine();
+        
+        Eventos evento = gestao.buscarEventoPorCodigo(codEvento);
+        if (evento == null) {
+            System.out.println("Evento não encontrado.");
+            return;
+        }
+
+        Bilheteria bilheteria = evento.getBilheteria();
+        
+        // Ingresos utilizados
+        ArrayList<Ingressos> utilizados = bilheteria.getIngressosUtilizados();
+        System.out.println("\n--- INGRESSOS UTILIZADOS (" + utilizados.size() + ") ---");
+        if (utilizados.isEmpty()) {
+            System.out.println("Nenhum ingresso utilizado.");
+        } else {
+            for (Ingressos ingresso : utilizados) {
+                System.out.println("  " + ingresso);
+            }
+        }
+
+        // Ingresos não utilizados
+        ArrayList<Ingressos> naoUtilizados = bilheteria.getIngressosNaoUtilizados();
+        System.out.println("\n--- INGRESSOS NÃO UTILIZADOS (" + naoUtilizados.size() + ") ---");
+        if (naoUtilizados.isEmpty()) {
+            System.out.println("Nenhum ingresso não utilizado.");
+        } else {
+            for (Ingressos ingresso : naoUtilizados) {
+                System.out.println("  " + ingresso);
+            }
+        }
+
+        
+        System.out.println("\n--- RESUMO ---");
+        System.out.println("Total de ingressos vendidos: " + (utilizados.size() + naoUtilizados.size()));
+        System.out.println("Utilizados: " + utilizados.size());
+        System.out.println("Não utilizados: " + naoUtilizados.size());
+        System.out.println("Lotação máxima: " + evento.getLotacao());
+    }
 
     private void popularDadosIniciais () {
         gestao.cadastrarEvento("Show de Rock", "30/11/2025", 150.00, 200, "Daniel Callegari");

@@ -88,6 +88,28 @@ public class Bilheteria {
     return false;
     }
 
+     public ArrayList<Ingressos> getIngressosUtilizados() {
+        ArrayList<Ingressos> utilizados = new ArrayList<>();
+        for (Ingressos ingresso : ingressos) {
+            if (ingresso.getfoiUtilizado()) {
+                utilizados.add(ingresso);
+            }
+        }
+        return utilizados;
+    }
+
+   
+    public ArrayList<Ingressos> getIngressosNaoUtilizados() {
+        ArrayList<Ingressos> naoUtilizados = new ArrayList<>();
+        for (Ingressos ingresso : ingressos) {
+            if (!ingresso.getfoiUtilizado()) {
+                naoUtilizados.add(ingresso);
+            }
+        }
+        return naoUtilizados;
+    }
+
+
     public int getVendidosNormais () {
         return vendidosNormais;
     }
