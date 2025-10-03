@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Eventos {
 
-    private static int contador = 100;
+    private static int contador = 100; 
     private int codigo;
     private String nome;
     private String data;
@@ -32,8 +32,8 @@ public class Eventos {
         this.lotacao = lotacao;
         this.responsavel = responsavel;
         this.codigo = geraCodigo();
+        this.bilheteria = new Bilheteria(this);
     }
-
 
     private static int geraCodigo() {
        return contador++;
@@ -44,7 +44,6 @@ public class Eventos {
     }
 
     public String getNome() {
-
         return nome;
     }
 
@@ -84,21 +83,17 @@ public class Eventos {
         this.responsavel = responsavel;
     }
 
-
-    public void setCodigo (int codigo) {
-        this.codigo = codigo;
+    public Bilheteria getBilheteria() {
+        return this.bilheteria;
     }
 
     @Override
     public String toString() {
-        return "{" +
-            " Nome='" + getNome() + "'" +
-            ", Data='" + getData() + "'" +
-            ", ValorIngresso='" + getValorIngresso() + "'" +
-            ", Lotacao='" + getLotacao() + "'" +
-            ", Responsavel='" + getResponsavel() + "'" +
-            ", Codigo='" + getCodigo() + "'" +
-            "}";
+        return "Evento Cód: " + getCodigo() + "\n" +
+               "  Nome: " + getNome() + "\n" +
+               "  Data: " + getData() + "\n" +
+               "  Valor do Ingresso: R$" + getValorIngresso() + "\n" +
+               "  Lotação Máxima: " + getLotacao() + "\n" +
+               "  Responsável: " + getResponsavel() + "\n";
     }
 }
-

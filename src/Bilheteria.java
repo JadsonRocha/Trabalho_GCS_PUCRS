@@ -14,23 +14,23 @@ public class Bilheteria {
     private int vendidosNormais = 0;
     private int seqTotal = 0;
 
-    public Bilheteria(Eventos evento){
+    public Bilheteria (Eventos evento) {
         this.eventos = evento;
         this.lotacaoMax = evento.getLotacao();
         this.maxEspeciais = (int) Math.ceil(this.lotacaoMax * 0.15);
-        this.maxNormais   = this.lotacaoMax - this.maxEspeciais;
+        this.maxNormais = this.lotacaoMax - this.maxEspeciais;
 
         this.ingressos = new ArrayList<>(evento.getLotacao());
         this.participantes = new ArrayList<>();
     }
 
-    public void adicionarParticipante(String nome, String cpf){
+    public void adicionarParticipante (String nome, String cpf) {
         Participantes p = new Participantes(nome, cpf);
         participantes.add(p);
     }
 
 
-    public boolean realizarVenda(Participantes participante, boolean especial){
+    public boolean realizarVenda (Participantes participante, boolean especial) {
         if ((vendidosNormais + vendidosEspeciais) >= lotacaoMax) return false;
 
         if (especial) {
@@ -48,27 +48,42 @@ public class Bilheteria {
         Ingressos ingresso = new Ingressos(participante, codIngresso, especial);
         ingressos.add(ingresso);
 
-        if (especial) vendidosEspeciais++; else vendidosNormais++;
+        if (especial) vendidosEspeciais++;
+        else vendidosNormais++;
         return true;
     }
 
 
     public boolean registrarEntrada(String codigoIngresso) {
         for (Ingressos ingresso : ingressos) {
-            if (ingresso.getCodigo().equals(codigoIngresso)) {
-                if (ingresso.getfoiUtilizado()) {
-                    return true;
+            if (ingresso.getCodigo().equalsIgnoreCase(codigoIngresso)) { // Usando equalsIgnoreCase da 'dev'
+                if (ingresso.getfoiUtilizado()) { // Usando o nome correto do método e a lógica da 'dev'
+                    return false; // Retorna false para indicar que a entrada falhou
                 }
-                ingresso.setfoiUtilizado(true);
+                ingresso.setfoiUtilizado(true); // Usando o nome correto do método
                 return true;
             }
         }
         return false;
     }
 
-    public int getVendidosNormais()   { return vendidosNormais; }
-    public int getVendidosEspeciais() { return vendidosEspeciais; }
-    public int getMaxNormais()        { return maxNormais; }
-    public int getMaxEspeciais()      { return maxEspeciais; }
-    public int getLotacaoMax()        { return lotacaoMax; }
+    public int getVendidosNormais () {
+        return vendidosNormais;
+    }
+
+    public int getVendidosEspeciais () {
+        return vendidosEspeciais;
+    }
+
+    public int getMaxNormais () {
+        return maxNormais;
+    }
+
+    public int getMaxEspeciais () {
+        return maxEspeciais;
+    }
+
+    public int getLotacaoMax () {
+        return lotacaoMax;
+    }
 }
