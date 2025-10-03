@@ -3,53 +3,52 @@ package src;
 import java.util.ArrayList;
 
 public class Bilheteria {
-    private Eventos eventos;
-    private ArrayList<Ingressos> ingressos;
+    private Eventos evento;
+    private ArrayList<Ingressos> ingressosVendidos;
 
-    public Bilheteria(Eventos evento){
-        eventos = evento;
-        ingressos = new ArrayList<>(evento.getLotacao());
+    public Bilheteria(Eventos evento) {
+        this.evento = evento;
+        this.ingressosVendidos = new ArrayList<>();
     }
 
-    public void adicionarParticipante(String nome, String cpf){
-        Participantes p = new Participantes(nome, cpf);
-        participantes.add(p);
-    }
-
-    public boolean realizarVenda(Participantes participante, boolean especial){ /** fazer verificação de Especiais **/
-        int lotacaoMax = this.eventos.getLotacao();
-        int qtdIngressos = ingressos.size();
-        String codIngresso;
-        if(qtdIngressos >= lotacaoMax){
+    public boolean realizarVenda(Participantes participante, boolean especial) {
+        if (ingressosVendidos.size() >= evento.getLotacao()) {
+            System.out.println("Lotação máxima atingida. Não é possível vender mais ingressos.");
             return false;
         }
-        else{
-            if(!especial){ //verifica se o ingresso é especial e add o "E" no cod do ingresso se necessário
 
-                codIngresso = String.valueOf(eventos.getCodigo() + "-" + (ingressos.size() + 1)); /** ajustar cod para 3 digitos no fim**/
-            }
-            else{
-                codIngresso = String.valueOf(eventos.getCodigo() + "-" + (ingressos.size() + 1)+ "E");
-                }
-            Ingressos ingresso = new Ingressos(participante, codIngresso, false);
-            ingressos.add(ingresso);
-            return true;
+        String codIngresso;
+        int proximoNumero = ingressosVendidos.size() + 1;
+
+        if (especial) {
+            codIngresso = evento.getCodigo() + "-E" + String.format("%03d", proximoNumero);
+        } else {
+            codIngresso = evento.getCodigo() + "-N" + String.format("%03d", proximoNumero);
         }
-    }
 
+        Ingressos novoIngresso = new Ingressos(participante, codIngresso, especial);
+        ingressosVendidos.add(novoIngresso);
+        System.out.println("Venda realizada com sucesso! Ingresso: " + codIngresso);
+        return true;
+    }
+    
     public boolean registrarEntrada(String codigoIngresso) {
-        for (Ingressos ingresso : ingressos) {
-            if (ingresso.getCodigo().equals(codigoIngresso)) {
-                if (ingresso.getfoiUtilizado()) {
-                    //System.out.println("Ingresso já utilizado.");
+        for (Ingressos ingresso : ingressosVendidos) {
+            if (ingresso.getCodigo().equalsIgnoreCase(codigoIngresso)) {
+                if (ingresso.isFoiUtilizado()) {
+                    System.out.println("ATENÇÃO: Este ingresso já foi utilizado.");
                     return false;
                 }
-                ingresso.setfoiUtilizado(true);
-                //System.out.println("Entrada registrada para: " + ingresso.getParticipante().getNome());
+                ingresso.setFoiUtilizado(true);
+                System.out.println("Entrada registrada com sucesso para: " + ingresso.getParticipante().getNome());
                 return true;
             }
         }
-        //System.out.println("Ingresso não encontrado.");
+        System.out.println("ERRO: Ingresso não encontrado.");
         return false;
+    }
+    
+    public int getQuantidadeIngressosVendidos() {
+        return ingressosVendidos.size();
     }
 }
