@@ -2,6 +2,9 @@ package src;
 
 import java.util.ArrayList;
 
+// Classe de gerenciamento dos eventos
+// Permite adicionar, listar e buscar eventos
+
 public class GestaoEventos {
     private ArrayList<Eventos> eventos;
 
@@ -9,9 +12,34 @@ public class GestaoEventos {
         eventos = new ArrayList<>();
 
     }
+// Validar se uma string não está vazia
+private boolean validarStringNaoVazia(String texto, String campo) {
+    if (texto == null || texto.trim().isEmpty()) {
+        System.out.println("Erro: " + campo + " é obrigatório!");
+        return false;
+    }
+    return true;
+    }
+
+    // Validar se um número é positivo
+    private boolean validarNumeroPositivo(double numero, String campo) {
+    if (numero <= 0) {
+        System.out.println("Erro: " + campo + " deve ser maior que zero!");
+        return false;
+        }
+    return true;
+    }
+
 
     public boolean cadastrarEvento(String nome, String data, double valor, int lotacao, String responsavel){
         Eventos e = new Eventos();
+
+         // Usa os métodos para validação
+    if (!validarStringNaoVazia(nome, "Nome do evento")) return false;
+    if (!validarStringNaoVazia(data, "Data do evento")) return false;
+    if (!validarStringNaoVazia(responsavel, "Responsável pelo evento")) return false;
+    if (!validarNumeroPositivo(valor, "Valor do ingresso")) return false;
+    if (!validarNumeroPositivo(lotacao, "Lotação do evento")) return false;
 
         System.out.println("Nome do Evento: ");
         e.setNome(nome);

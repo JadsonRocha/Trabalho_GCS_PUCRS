@@ -3,6 +3,9 @@ package src;
 import java.util.ArrayList;
 import java.util.Random;
 
+// Classe responsável por armazenar as informações de um evento
+// Contém dados como nome, data, valor do ingresso e responsável
+
 public class Eventos {
 
     private static int contador = 100;
