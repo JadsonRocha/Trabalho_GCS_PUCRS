@@ -1,6 +1,5 @@
 package src;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Application {
@@ -89,5 +88,21 @@ public class Application {
     private void popularDadosIniciais() {
         gestao.cadastrarEvento("Show de Rock", "30/11/2025", 150.00, 200, "Daniel Callegari");
         gestao.cadastrarEvento("Palestra de Tecnologia", "15/10/2025", 50.00, 100, "Equipe GCS");
+    }
+    
+    public void buscarEventoPorCodigo(){
+      System.out.println("Digite o codigo do evento: ");
+      int codigo = entrada.nextInt();
+      entrada.nextLine();
+
+      Eventos evento = gestao.buscarEventoPorCodigo(codigo);
+
+      if(evento != null){
+        System.out.println("Evento encontrado: " + evento);
+
+      } else {
+        System.out.println("Nenhum evento foi encontrado");
+      }
+      
     }
 }
