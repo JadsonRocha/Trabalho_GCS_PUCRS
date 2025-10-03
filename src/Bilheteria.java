@@ -65,6 +65,29 @@ public class Bilheteria {
         return false;
     }
 
+    public boolean cancelarIngresso(String codigoIngresso) {
+    for (Ingressos ingresso : ingressos) {
+        if (ingresso.getCodigo().equalsIgnoreCase(codigoIngresso)) {
+            
+            if (ingresso.getfoiUtilizado()) {
+                System.out.println("Não é possível cancelar.");
+                return false;
+            }
+            
+            ingressos.remove(ingresso);
+            
+            if (ingresso.isEspecial()) {
+                vendidosEspeciais--;
+            } else {
+                vendidosNormais--;
+            }
+            return true;
+            }
+        }
+    System.out.println("Ingresso não encontrado.");
+    return false;
+    }
+
     public int getVendidosNormais () {
         return vendidosNormais;
     }
