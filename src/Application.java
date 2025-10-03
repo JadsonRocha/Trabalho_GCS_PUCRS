@@ -33,6 +33,12 @@ public class Application {
                 case 4:
                     gestao.listarEventos();
                     break;
+                case 5:
+                    cancelarEvento();
+                    break;
+                case 6:
+                    cancelarIngresso();
+                    break;
                 case 0:
                     System.out.println("Sistema finalizado...");
                     break;
@@ -49,7 +55,10 @@ public class Application {
         System.out.println("[2] Listar todos os eventos");
         System.out.println("[3] Buscar Evento");
         System.out.println("[4] Gerar relatório mensal");
+        System.out.println("[5] Cancelar Evento");
+        System.out.println("[6] Cancelar Ingresso");
         System.out.println("[0] Sair");
+        
     }
 
     private void cadastraEvento () {
@@ -123,6 +132,42 @@ public class Application {
             }
         }
     }
+
+    private void cancelarEvento() {
+    System.out.println("\n--- CANCELAR EVENTO ---");
+    if (gestao.listarEventos().isEmpty()) {
+        System.out.println("Não existem eventos cadastrados.");
+        return;
+    }
+    System.out.print("Informe o código do evento a ser cancelado: ");
+    int cod = entrada.nextInt();
+    entrada.nextLine();
+    gestao.removerEvento(cod);
+}
+
+private void cancelarIngresso() {
+    System.out.println("\n--- CANCELAR INGRESSO ---");
+    if (gestao.listarEventos().isEmpty()) {
+        System.out.println("Não existem eventos cadastrados.");
+        return;
+    }
+    System.out.print("Informe o código do evento: ");
+    int codEvento = entrada.nextInt();
+    entrada.nextLine();
+    Eventos evento = gestao.buscarEventoPorCodigo(codEvento);
+    if (evento == null) {
+        System.out.println("Evento não encontrado.");
+        return;
+    }
+    System.out.print("Informe o código do ingresso: ");
+    String codIngresso = entrada.nextLine();
+    Bilheteria bilheteria = evento.getBilheteria();
+    if (bilheteria.cancelarIngresso(codIngresso)) {
+        System.out.println("Ingresso cancelado com sucesso.");
+    } else {
+        System.out.println("Falha ao cancelar o ingresso.");
+    }
+}
 
     private void popularDadosIniciais () {
         gestao.cadastrarEvento("Show de Rock", "30/11/2025", 150.00, 200, "Daniel Callegari");
