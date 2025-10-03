@@ -31,7 +31,6 @@ public class Application {
                     buscarEvento();
                     break;
                 case 4:
-                    gestao.listarEventos();
                     break;
                 case 0:
                     System.out.println("Sistema finalizado...");
@@ -61,7 +60,7 @@ public class Application {
         String data = entrada.nextLine();
 
         System.out.println("Valor do Ingresso: ");
-        Double valor = entrada.nextDouble();
+        double valor = entrada.nextDouble();
 
         System.out.println("Lotaçao maxima do Evento:");
         int lotacao = entrada.nextInt();

@@ -1,8 +1,5 @@
 package src;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 public class Eventos {
 
     private static int contador = 100;
