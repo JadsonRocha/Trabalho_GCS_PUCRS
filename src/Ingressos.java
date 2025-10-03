@@ -2,42 +2,42 @@ package src;
 
 public class Ingressos {
 
-    private boolean  especial;
+    private boolean especial;
     private String codigo;
-    private Participantes participante;
+    private Participantes Participante;
     private boolean foiUtilizado;
 
-    public Ingressos(Participantes comprador, String codigo, boolean especial){
+    public Ingressos(Participantes comprador, String codigo, boolean especial) {
         this.especial = especial;
         this.codigo = codigo;
         this.participante = comprador;
         this.foiUtilizado = false;
     }
 
-    public boolean isEspecial () {
+    public boolean isEspecial() {
         return especial;
     }
 
-    public String getCodigo () {
+    public String getCodigo() {
         return codigo;
     }
 
-    public Participantes getParticipante () {
+    public Participantes getParticipante() {
         return participante;
     }
 
-    public boolean isFoiUtilizado () {
+    public boolean isFoiUtilizado() {
         return foiUtilizado;
     }
 
-    public void setFoiUtilizado(boolean usado) {
-        this.foiUtilizado = usado;
+    public void setParticipante (Participantes participante) {
+        Participante = participante;
     }
 
-   @Override
+    @Override
     public String toString() {
         if (participante != null) {
-            if (especial == true) {
+            if (especial) {
                 return codigo + " - Especial - " + participante.getNome();
             } else {
                 return codigo + " - Normal - " + participante.getNome();
@@ -51,6 +51,3 @@ public class Ingressos {
         }
     }
 }
-
- 
-
