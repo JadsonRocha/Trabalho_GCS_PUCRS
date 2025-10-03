@@ -30,8 +30,22 @@ public class Application {
                 case 3:
                     buscarEvento();
                     break;
-                case 4:
+                case 5:
+                    // cancelar evento.
                     break;
+                case 6:
+                    // cancelar ingresso
+                    break;
+                case 7:
+                    //adicionar participante
+                    break;
+                case 8:
+                    //adicionar ingresso
+                case 9:
+                    //remover ingresso
+                    break;
+                case 10:
+                    // registrar entrada
                 case 0:
                     System.out.println("Sistema finalizado...");
                     break;
