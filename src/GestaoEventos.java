@@ -13,19 +13,14 @@ public class GestaoEventos {
     public boolean cadastrarEvento(String nome, String data, double valor, int lotacao, String responsavel){
         Eventos e = new Eventos();
 
-        System.out.println("Nome do Evento: ");
         e.setNome(nome);
 
-        System.out.println("Data do Evento: ");
         e.setData(data);
 
-        System.out.println("Valor do Ingresso: ");
         e.setValorIngresso(valor);
 
-        System.out.println("Lotaçao maxima do Evento:");
         e.setLotacao(lotacao);
 
-        System.out.println("Responsável do Evento: ");
         e.setResponsavel(responsavel);
 
         eventos.add(e);
@@ -61,6 +56,7 @@ public class GestaoEventos {
     public Eventos buscarEventoPorCodigo(int cod){
        for (Eventos evento : eventos) {
             if(evento.getCodigo() == cod){
+                System.out.println("\nEvento encontrado:");
                 return evento;
             }
         }
