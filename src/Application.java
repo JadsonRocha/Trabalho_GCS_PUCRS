@@ -56,6 +56,45 @@ public class Application {
         System.out.println("[3] Buscar Evento");
         System.out.println("[4] Gerar relatório mensal");
         System.out.println("[0] Sair");
+        opcao = entrada.nextInt();
+        entrada.nextLine();
+
+        //em seguida vou criar o Switch case
+        switch(opcao){
+          case 1:
+            cadastraEvento();
+            break;
+
+          case 2:
+            listarEventos();
+            break;
+
+          case 3:
+            buscarEvento();
+            break;
+
+          case 4:
+            // Gerar relatorio mensal
+            break;
+
+          case 0:
+            System.out.println("Sistema finalizado...");
+            break;
+
+          default:
+            System.out.println("Seleçao invalida");
+            break;
+        }
+
+    } while (opcao != 0);
+  }
+
+    private void exibirMenuPrincipal() {
+        System.out.println("\n--- MENU ---");
+        System.out.println("1. Listar eventos");
+        System.out.println("2. Procurar evento por nome");
+        System.out.println("3. Editar um evento");
+        System.out.println("0. Sair");
         System.out.print("Escolha uma opção: ");
     }
     
@@ -74,7 +113,8 @@ public class Application {
         int lotacao = entrada.nextInt();
         entrada.nextLine(); 
 
-        System.out.print("Responsável pelo Evento: ");
+        System.out.println("Responsável do Evento: ");
+        entrada.next(); //limpando buffer
         String responsavel = entrada.nextLine();
 
         if (gestao.cadastrarEvento(nome, data, valor, lotacao, responsavel)) {
@@ -90,7 +130,48 @@ public class Application {
         gestao.buscarEventoPorNome(nomeBusca);
     }
 
-    private void popularDadosIniciais() {
+    public void listarEventos(){
+      ArrayList<Eventos> eventos = gestao.listarEventos();
+      if (eventos.isEmpty()){
+          System.out.println("não existem eventos cadastrados");
+      }
+      else{
+          System.out.println(eventos);
+      }
+    }
+
+    private void buscarEvento() {
+        System.out.println("\n--- BUSCANDO EVENTO ---");
+        if (gestao.listarEventos().isEmpty())
+
+            System.out.println("ainda não existem eventos cadastrados");
+        else {
+
+            System.out.println("[1] Por código");
+            System.out.println("[2] Por nome (contém)");
+            System.out.print("Escolha: ");
+            int op = entrada.nextInt();
+            entrada.nextLine();
+            switch (op) {
+                case 1:
+                    System.out.print("Informe o código do evento: ");
+                    int cod = entrada.nextInt();
+                    entrada.nextLine();
+                    gestao.buscarEventoPorCodigo(cod);
+                    break;
+
+                case 2:
+                    System.out.print("Informe o nome do evento: ");
+                    String termo = entrada.nextLine().trim().toLowerCase();
+                    gestao.buscarEventoPorNome(termo);
+                    break;
+
+                default:
+                    System.out.println("opção inválida");
+            }
+        }
+    }
+        private void popularDadosIniciais() {
         gestao.cadastrarEvento("Show de Rock", "30/11/2025", 150.00, 200, "Daniel Callegari");
         gestao.cadastrarEvento("Palestra de Tecnologia", "15/10/2025", 50.00, 100, "Equipe GCS");
     }

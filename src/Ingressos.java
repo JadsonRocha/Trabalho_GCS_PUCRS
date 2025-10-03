@@ -4,7 +4,7 @@ public class Ingressos {
 
     private boolean especial;
     private String codigo;
-    private Participantes participante;
+    private Participantes Participante;
     private boolean foiUtilizado;
 
     public Ingressos(Participantes comprador, String codigo, boolean especial) {
@@ -30,8 +30,8 @@ public class Ingressos {
         return foiUtilizado;
     }
 
-    public void setFoiUtilizado(boolean usado) {
-        this.foiUtilizado = usado;
+    public void setParticipante (Participantes participante) {
+        Participante = participante;
     }
 
     @Override

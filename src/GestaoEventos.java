@@ -8,10 +8,21 @@ public class GestaoEventos {
     public GestaoEventos() {
         eventos = new ArrayList<>();
     }
-    
-    public boolean cadastrarEvento(String nome, String data, double valor, int lotacao, String responsavel) {
-        Eventos novoEvento = new Eventos(nome, data, valor, lotacao, responsavel);
-        eventos.add(novoEvento);
+
+    public boolean cadastrarEvento(String nome, String data, double valor, int lotacao, String responsavel){
+        Eventos e = new Eventos();
+
+        e.setNome(nome);
+
+        e.setData(data);
+
+        e.setValorIngresso(valor);
+
+        e.setLotacao(lotacao);
+
+        e.setResponsavel(responsavel);
+
+        eventos.add(e);
         return true;
     }
 
@@ -45,9 +56,10 @@ public class GestaoEventos {
         }
     }
 
-    public Eventos buscarEventoPorCodigo(int cod) {
-        for (Eventos evento : eventos) {
-            if (evento.getCodigo() == cod) {
+    public Eventos buscarEventoPorCodigo(int cod){
+       for (Eventos evento : eventos) {
+            if(evento.getCodigo() == cod){
+                System.out.println("\nEvento encontrado:");
                 return evento;
             }
         }

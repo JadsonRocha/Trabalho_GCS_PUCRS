@@ -12,12 +12,17 @@ public class Eventos {
     private double valorIngresso;
     private int lotacao;
     private String responsavel;
-    private ArrayList<Participantes> participantes;
-    private Bilheteria bilheteria;
+    private Bilheteria bilheteria; // para manter o código de eventos mais enxuto e claro botei bilheteria como um atributo;
 
-    public Eventos() {
-        this.participantes = new ArrayList<>();
-        this.bilheteria = new Bilheteria(this);
+    public Eventos () {
+        this.codigo = 0;
+        this.nome = "";
+        this.data = "";
+        this.valorIngresso = 0.0;
+        this.lotacao = 0;
+        this.responsavel = "";
+        this.bilheteria = new Bilheteria(this); //recebe como parametro o próprio evento
+        this.codigo = geraCodigo();
     }
 
     public Eventos(String nome, String data, double valorIngresso, int lotacao, String responsavel) {
@@ -32,7 +37,7 @@ public class Eventos {
     }
 
     private static int geraCodigo() {
-        return contador++;
+       return contador++;
     }
 
     public int getCodigo() {
