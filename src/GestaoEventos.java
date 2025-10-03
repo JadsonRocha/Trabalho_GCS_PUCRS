@@ -2,15 +2,20 @@ package src;
 
 import java.util.ArrayList;
 
+// Classe de gerenciamento dos eventos
+// Permite adicionar, listar e buscar eventos
+
 public class GestaoEventos {
     private ArrayList<Eventos> eventos;
 
     public GestaoEventos() {
         eventos = new ArrayList<>();
+
     }
 
     public boolean cadastrarEvento(String nome, String data, double valor, int lotacao, String responsavel){
         Eventos e = new Eventos();
+
 
         e.setNome(nome);
 
@@ -63,7 +68,7 @@ public class GestaoEventos {
                 return evento;
             }
         }
-        return null; 
+        return null;
     }
 
     public ArrayList<Eventos> listarEventos() {
@@ -72,8 +77,4 @@ public class GestaoEventos {
         CopiaEventos.addAll(eventos);
         return CopiaEventos;
 }
-    
-    public ArrayList<Eventos> getEventos() {
-        return new ArrayList<>(eventos);
-    }
 }

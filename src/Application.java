@@ -31,7 +31,6 @@ public class Application {
                     buscarEvento();
                     break;
                 case 4:
-                    gestao.listarEventos();
                     break;
                 case 0:
                     System.out.println("Sistema finalizado...");
@@ -57,13 +56,13 @@ public class Application {
         System.out.print("Nome do Evento: ");
         String nome = entrada.nextLine();
 
-        System.out.print("Data do Evento (dd/mm/aaaa): ");
+        System.out.println("Data do Evento no formato (dd/mm/aaaa)");
         String data = entrada.nextLine();
 
-        System.out.print("Valor do Ingresso: ");
+        System.out.println("Valor do Ingresso: ");
         double valor = entrada.nextDouble();
 
-        System.out.print("Lotação máxima do Evento: ");
+        System.out.println("Lotaçao maxima do Evento:");
         int lotacao = entrada.nextInt();
         entrada.nextLine();
 
@@ -129,4 +128,3 @@ public class Application {
         gestao.cadastrarEvento("Palestra de Tecnologia", "15/10/2025", 50.00, 100, "Equipe GCS");
     }
 }
-
