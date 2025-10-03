@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Eventos {
 
-    private static int contador = 100;
+    private static int contador = 100; 
     private int codigo;
     private String nome;
     private String data;
@@ -13,17 +13,11 @@ public class Eventos {
     private int lotacao;
     private String responsavel;
     private ArrayList<Participantes> participantes;
-    private Bilheteria bilheteria; // para manter o código de eventos mais enxuto e claro botei bilheteria como um atributo;
+    private Bilheteria bilheteria;
 
-    public Eventos () {
-        this.codigo = 0;
-        this.nome = "";
-        this.data = "";
-        this.valorIngresso = 0.0;
-        this.lotacao = 0;
-        this.responsavel = "";
-        this.bilheteria = new Bilheteria(this); //recebe como parametro o próprio evento
-        participantes = new ArrayList<>();
+    public Eventos() {
+        this.participantes = new ArrayList<>();
+        this.bilheteria = new Bilheteria(this);
     }
 
     public Eventos(String nome, String data, double valorIngresso, int lotacao, String responsavel) {
@@ -32,13 +26,13 @@ public class Eventos {
         this.valorIngresso = valorIngresso;
         this.lotacao = lotacao;
         this.responsavel = responsavel;
-        this.codigo = geraCodigo();
+        this.codigo = geraCodigo(); 
+        this.participantes = new ArrayList<>();
+        this.bilheteria = new Bilheteria(this);
     }
 
-
     private static int geraCodigo() {
-        Random random = new Random();
-        return random.nextInt(900) + 100;
+        return contador++;
     }
 
     public int getCodigo() {
@@ -46,7 +40,6 @@ public class Eventos {
     }
 
     public String getNome() {
-
         return nome;
     }
 
@@ -86,21 +79,21 @@ public class Eventos {
         this.responsavel = responsavel;
     }
 
-
-    public void setCodigo (int codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+    
+    public Bilheteria getBilheteria() {
+        return this.bilheteria;
     }
 
     @Override
     public String toString() {
-        return "{" +
-            " Nome='" + getNome() + "'" +
-            ", Data='" + getData() + "'" +
-            ", ValorIngresso='" + getValorIngresso() + "'" +
-            ", Lotacao='" + getLotacao() + "'" +
-            ", Responsavel='" + getResponsavel() + "'" +
-            ", Codigo='" + getCodigo() + "'" +
-            "}";
+        return "Evento Cód: " + getCodigo() + "\n" +
+               "  Nome: " + getNome() + "\n" +
+               "  Data: " + getData() + "\n" +
+               "  Valor do Ingresso: R$" + getValorIngresso() + "\n" +
+               "  Lotação Máxima: " + getLotacao() + "\n" +
+               "  Responsável: " + getResponsavel() + "\n";
     }
 }
-
