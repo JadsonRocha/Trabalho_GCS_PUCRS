@@ -29,8 +29,7 @@ public class Bilheteria {
         participantes.add(p);
     }
 
-
-    public boolean realizarVenda (Participantes participante, boolean especial) {
+    public boolean realizarVenda(Participantes participante, boolean especial){
         if ((vendidosNormais + vendidosEspeciais) >= lotacaoMax) return false;
 
         if (especial) {
@@ -48,8 +47,7 @@ public class Bilheteria {
         Ingressos ingresso = new Ingressos(participante, codIngresso, especial);
         ingressos.add(ingresso);
 
-        if (especial) vendidosEspeciais++;
-        else vendidosNormais++;
+        if (especial) vendidosEspeciais++; else vendidosNormais++;
         return true;
     }
 
@@ -61,7 +59,7 @@ public class Bilheteria {
                     return false;
                 }
                 ingresso.setfoiUtilizado(true);
-                return true;
+                return false;
             }
         }
         return false;

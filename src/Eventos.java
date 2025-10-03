@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Eventos {
 
-    private static int contador = 100; 
+    private static int contador = 100;
     private int codigo;
     private String nome;
     private String data;
@@ -32,8 +32,10 @@ public class Eventos {
         this.lotacao = lotacao;
         this.responsavel = responsavel;
         this.codigo = geraCodigo();
+        this.codigo = geraCodigo();
         this.bilheteria = new Bilheteria(this);
     }
+
 
     private static int geraCodigo() {
        return contador++;
@@ -44,6 +46,7 @@ public class Eventos {
     }
 
     public String getNome() {
+
         return nome;
     }
 
@@ -97,3 +100,4 @@ public class Eventos {
                "  Responsável: " + getResponsavel() + "\n";
     }
 }
+
