@@ -5,9 +5,8 @@ import java.util.ArrayList;
 public class GestaoEventos {
     private ArrayList<Eventos> eventos;
 
-    public GestaoEventos(){
+    public GestaoEventos() {
         eventos = new ArrayList<>();
-
     }
 
     public boolean cadastrarEvento(String nome, String data, double valor, int lotacao, String responsavel){
@@ -27,29 +26,33 @@ public class GestaoEventos {
         return true;
     }
 
-    public boolean removerEvento(int cod){
+    public boolean removerEvento(int cod) {
         Eventos evento = buscarEventoPorCodigo(cod);
-        if (evento == null)
+        if (evento == null) {
+            System.out.println("Evento com código " + cod + " não encontrado para remoção.");
             return false;
-
-        else{
+        } else {
             eventos.remove(evento);
-            System.out.println("Evento removido: " + evento);
+            System.out.println("Evento removido com sucesso: " + evento.getNome());
             return true;
         }
     }
 
     public void buscarEventoPorNome(String termoBusca) {
-        boolean encontrado = false;
-        System.out.println("Eventos encontrados:");
-
+        ArrayList<Eventos> encontrados = new ArrayList<>();
         for (Eventos evento : eventos) {
             if (evento.getNome().toLowerCase().contains(termoBusca.toLowerCase())) {
+                encontrados.add(evento);
+            }
+        }
+
+        if (encontrados.isEmpty()) {
+            System.out.println("Nenhum evento encontrado com o termo: '" + termoBusca + "'");
+        } else {
+            System.out.println("\n--- Eventos encontrados ---");
+            for (Eventos evento : encontrados) {
                 System.out.println(evento);
             }
-            if(!encontrado) {
-            System.out.println("Nenhum evento encontrado para: " + termoBusca);
-    }
         }
     }
 
@@ -60,21 +63,22 @@ public class GestaoEventos {
                 return evento;
             }
         }
-
-            System.out.println("Nenhum evento encontrado com o código: " + cod);
-        return null;
-
+        return null; 
     }
 
-    public ArrayList<Eventos> listarEventos() {
-        System.out.println("\n--- LISTA DE EVENTOS ---");
-        ArrayList<Eventos> CopiaEventos = new ArrayList<>();
-        CopiaEventos.addAll(eventos);
-        return CopiaEventos;
+    public void listarEventos() {
+    System.out.println("\n--- LISTA DE EVENTOS ---");
+    if (eventos.isEmpty()) {
+        System.out.println("Nenhum evento cadastrado.");
+        return;
     }
 
-    public void editarNomeEvento(Eventos evento, String novoNome) {
-        evento.setNome(novoNome);
-        System.out.print("Novo nome do evento (" + evento.getNome() + ")");
+    for (Eventos evento : eventos) {
+        System.out.println(evento);
+    }
+}
+    
+    public ArrayList<Eventos> getEventos() {
+        return new ArrayList<>(eventos);
     }
 }

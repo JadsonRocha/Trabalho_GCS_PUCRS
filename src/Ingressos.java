@@ -7,41 +7,47 @@ public class Ingressos {
     private Participantes Participante;
     private boolean foiUtilizado;
 
-    public Ingressos(Participantes comprador, String codigo, Boolean especial){
-        especial = especial;
-        codigo = codigo;
-        Participante = comprador;
+    public Ingressos(Participantes comprador, String codigo, boolean especial) {
+        this.especial = especial;
+        this.codigo = codigo;
+        this.participante = comprador;
+        this.foiUtilizado = false;
     }
 
-    public boolean isEspecial () {
+    public boolean isEspecial() {
         return especial;
     }
 
-    public void setEspecial (boolean especial) {
-        this.especial = especial;
-    }
-
-    public String getCodigo () {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo (String codigo) {
-        this.codigo = codigo;
+    public Participantes getParticipante() {
+        return participante;
     }
 
-    public Participantes getParticipante () {
-        return Participante;
+    public boolean isFoiUtilizado() {
+        return foiUtilizado;
     }
 
     public void setParticipante (Participantes participante) {
         Participante = participante;
     }
 
-    public boolean getfoiUtilizado () {
-        return foiUtilizado;
-    }
-
-    public void setfoiUtilizado (boolean foiUtilizado) {
-        foiUtilizado = foiUtilizado;
+    @Override
+    public String toString() {
+        if (participante != null) {
+            if (especial) {
+                return codigo + " - Especial - " + participante.getNome();
+            } else {
+                return codigo + " - Normal - " + participante.getNome();
+            }
+        } else {
+            if (especial) {
+                return codigo + " - Especial (ingresso disponível)";
+            } else {
+                return codigo + " - Normal (ingresso disponível)";
+            }
+        }
     }
 }

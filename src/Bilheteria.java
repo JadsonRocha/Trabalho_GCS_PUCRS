@@ -3,6 +3,11 @@ package src;
 import java.util.ArrayList;
 
 public class Bilheteria {
+    package src;
+
+import java.util.ArrayList;
+
+public class Bilheteria {
     private Eventos eventos;
     private ArrayList<Ingressos> ingressos;
     private ArrayList<Participantes> participantes;
@@ -29,7 +34,6 @@ public class Bilheteria {
         participantes.add(p);
     }
 
-
     public boolean realizarVenda(Participantes participante, boolean especial){
         if ((vendidosNormais + vendidosEspeciais) >= lotacaoMax) return false;
 
@@ -45,21 +49,20 @@ public class Bilheteria {
                 seqTotal,
                 (especial ? "E" : ""));
 
-        Ingressos ingresso = new Ingressos(participante, codIngresso, especial);
+        Ingressos ingresso = new Ingressos(participante, codIngressos, especial);
         ingressos.add(ingresso);
 
         if (especial) vendidosEspeciais++; else vendidosNormais++;
         return true;
     }
-
-
+  
     public boolean registrarEntrada(String codigoIngresso) {
         for (Ingressos ingresso : ingressos) {
-            if (ingresso.getCodigo().equals(codigoIngresso)) {
-                if (ingresso.getfoiUtilizado()) {
-                    return true;
+            if (ingresso.getCodigo().equalsIgnoreCase(codigoIngresso)) {
+                if (ingresso.isUtilizado()) {
+                    return false;
                 }
-                ingresso.setfoiUtilizado(true);
+                ingresso.setUtilizado(true);
                 return true;
             }
         }
@@ -71,4 +74,5 @@ public class Bilheteria {
     public int getMaxNormais()        { return maxNormais; }
     public int getMaxEspeciais()      { return maxEspeciais; }
     public int getLotacaoMax()        { return lotacaoMax; }
+}
 }
