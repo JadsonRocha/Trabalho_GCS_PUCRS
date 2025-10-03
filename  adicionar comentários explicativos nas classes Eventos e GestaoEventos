@@ -1,0 +1,210 @@
+[33mcommit 93ed3ae15e426ff0bfc7d18212316d5b8b57ac04[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdev-lorenzo[m[33m, [m[1;31morigin/dev-thomas[m[33m, [m[1;31morigin/dev[m[33m, [m[1;32mdev[m[33m)[m
+Merge: 15160ac 6017575
+Author: thomasgic <thomasgic146@gmail.com>
+Date:   Thu Oct 2 14:30:50 2025 -0300
+
+    merge com a dev-gabriela e resolução de um conflito
+
+[1mdiff --cc Application.java[m
+[1mindex 5c261c4,032294a..0000000[m
+[1mdeleted file mode 100644,100644[m
+[1m--- a/Application.java[m
+[1m+++ /dev/null[m
+[36m@@@ -1,86 -1,94 +1,0 @@@[m
+[31m--import java.util.ArrayList;[m
+[31m--import java.util.List;[m
+[31m- import java.time.LocalDate;[m
+[31m--import java.util.Scanner;[m
+[31m--[m
+[31m--public class Application {[m
+[31m--    private GestaoEventos gestao;[m
+[31m -[m
+[31m--    private Scanner scanner;[m
+[31m--[m
+[31m--    public Application() {[m
+[31m-         this.gestao = new GestaoEventos();[m
+[31m -        this.gestaoEventos = new GestaoEventos();[m
+[31m--        this.scanner = new Scanner(System.in);[m
+[31m--        popularDadosIniciais(); [m
+[31m--    }[m
+[31m--[m
+[31m--[m
+[31m--    public void run() {[m
+[31m--        System.out.println("Bem-vindo ao Sistema de Gestão de Eventos!");[m
+[31m--        int opcao = -1;[m
+[31m--        while (opcao != 0) {[m
+[31m--            exibirMenuPrincipal();[m
+[31m--            opcao = Integer.parseInt(scanner.nextLine());[m
+[31m--[m
+[31m--            switch (opcao) {[m
+[31m--                case 1:[m
+[31m--                    cadastraEvento();[m
+[31m--                    break;[m
+[31m--[m
+[31m-                 case 2: gestao.listarEventos();[m
+[31m -                case 2: GestaoEventos.listarEventos();[m
+[31m--                break;[m
+[31m--[m
+[31m--                case 3:[m
+[31m -                    buscarEventoPorNome();[m
+[31m--                break;[m
+[31m--[m
+[31m--                case 4: gerirEvento();[m
+[31m--                break;[m
+[31m--[m
+[31m--                case 0: System.out.println("A encerrar o sistema...");[m
+[31m--                break;[m
+[31m--[m
+[31m--                default: System.out.println("Opção inválida.");[m
+[31m--            }[m
+[31m--            if (opcao != 0) {[m
+[31m--               System.out.println("\nPressiona Enter para continuar...");[m
+[31m--               scanner.nextLine();[m
+[31m--            }[m
+[31m--        }[m
+[31m--    }[m
+[31m--[m
+[31m--    private void exibirMenuPrincipal() {[m
+[31m--        System.out.println("\n--- MENU ---");[m
+[31m--        System.out.println("1. Listar eventos");[m
+[31m--        System.out.println("2. Procurar evento por nome");[m
+[31m--        System.out.println("3. Editar um evento");[m
+[31m--        System.out.println("0. Sair");[m
+[31m--        System.out.print("Escolha: ");[m
+[31m--    }[m
+[31m--[m
+[31m--    public void cadastraEvento() {[m
+[31m--        System.out.println("---REALIZANDO CADASTRO DE EVENTO---");[m
+[31m--        System.out.println("Nome do Evento: ");[m
+[31m--        String nome = scanner.nextLine();[m
+[31m--[m
+[31m-         System.out.println("Data do Evento no formato (dd/mm/aaaa)");[m
+[31m-         String data = scanner.nextLine();[m
+[31m -        System.out.println("Data do Evento: ");[m
+[31m -[m
+[31m -        System.out.println("dia: ");[m
+[31m -        S[m
+[31m--[m
+[31m--        System.out.println("Valor do Ingresso: ");[m
+[31m-         Double valor = scanner.nextDouble();[m
+[31m -        e.setValorIngresso(valor);[m
+[31m--[m
+[31m--        System.out.println("Lotaçao maxima do Evento:");[m
+[31m-         int lotacao = scanner.nextInt();[m
+[31m -        e.setLotacao(lotacao);[m
+[31m--[m
+[31m--        System.out.println("Responsável do Evento: ");[m
+[31m-         String responsavel = scanner.nextLine();[m
+[31m -        e.setResponsavel(responsavel);[m
+[31m--[m
+[31m-         gestao.cadastrarEvento(nome, data, valor, lotacao, responsavel);[m
+[31m -        eventos.add(e);[m
+[31m -        return true;[m
+[31m--    }[m
+[31m--[m
+[31m--        private void popularDadosIniciais() {[m
+[31m-             gestao.cadastrarEvento("Show de Rock", "30/11/2025", 150.00, 200, "Daniel Callegari");[m
+[31m-             gestao.cadastrarEvento("Palestra de Tecnologia", "15/10/2025", 50.00, 100, "Equipe GCS");[m
+[31m -            Eventos e1 = new Eventos("Show de Rock", "30/11/2025", 150.00, 200, "Daniel Callegari");[m
+[31m -            Eventos e2 = new Eventos("Palestra de Tecnologia", "15/10/2025", 50.00, 100, "Equipe GCS");[m
+[31m--[m
+[31m-             gestao.[m
+[31m -            Participantes p1 = new Participantes("Ana Silva", "111.222.333-44");[m
+[31m -            e2.getParticipantes().add(p1);[m
+[31m -[m
+[31m -            eventos.add(e1);[m
+[31m -            eventos.add(e2);[m
+[31m--[m
+[31m--        }[m
+[31m--    }[m
+[1mdiff --cc src/Application.java[m
+[1mindex 0000000,8983514..5b4f5b5[m
+mode 000000,100644..100644[m
+[1m--- a/src/Application.java[m
+[1m+++ b/src/Application.java[m
+[36m@@@ -1,0 -1,98 +1,93 @@@[m
+[32m++package src;[m
+[32m++[m
+[32m+ import java.util.ArrayList;[m
+[32m+ import java.util.Scanner;[m
+[32m+ [m
+[32m+ public class Application {[m
+[31m -  private ArrayList<Eventos> eventos;[m
+[32m++  private GestaoEventos gestao;[m
+[32m+   private Scanner entrada;[m
+[32m+   private int contadorCodigo;[m
+[32m+ [m
+[32m+   public Application() {[m
+[31m -    this.eventos = new ArrayList<>();[m
+[32m++    this.gestao = new GestaoEventos();[m
+[32m+     this.entrada = new Scanner(System.in);[m
+[32m+     this.contadorCodigo = 0;[m
+[32m+ [m
+[32m+   }[m
+[32m+   public void executar() {[m
+[32m+     int opcao;[m
+[31m -    [m
+[31m -    do { [m
+[32m++[m
+[32m++    do {[m
+[32m+         System.out.println("\n--- Gestão de Eventos---");[m
+[32m+         System.out.println("[1] Cadastrar novo evento");[m
+[32m+         System.out.println("[2] Listar todos os eventos");[m
+[32m+         System.out.println("[3] Buscar Evento");[m
+[32m+         System.out.println("[4] Gerar relatorio mensal");[m
+[32m+         System.out.println("[0] Sair");[m
+[32m+         opcao = entrada.nextInt();[m
+[32m+         entrada.nextLine();[m
+[32m+ [m
+[32m+         //em seguida vou criar o Switch case[m
+[32m+         switch(opcao){[m
+[32m+           case 1:[m
+[32m+             cadastraEvento();[m
+[32m+             break;[m
+[31m -          [m
+[32m++[m
+[32m+           case 2:[m
+[31m -            listaEventos();[m
+[32m++            gestao.listarEventos();[m
+[32m+             break;[m
+[31m -          [m
+[32m++[m
+[32m+           case 3:[m
+[32m+             // Buscar Evento[m
+[32m+             break;[m
+[32m+ [m
+[32m+           case 4:[m
+[32m+             // Gerar relatorio mensal[m
+[32m+             break;[m
+[31m -          [m
+[32m++[m
+[32m+           case 0:[m
+[32m+             System.out.println("Sistema finalizado...");[m
+[32m+             break;[m
+[31m -          [m
+[32m++[m
+[32m+           default:[m
+[32m+             System.out.println("Seleçao invalida");[m
+[32m+             break;[m
+[32m+         }[m
+[32m+ [m
+[32m+     } while (opcao != 0);[m
+[32m+   }[m
+[32m+ [m
+[31m -    public void cadastraEvento(){[m
+[31m -      Eventos e = new Eventos();[m
+[32m++    private void exibirMenuPrincipal() {[m
+[32m++        System.out.println("\n--- MENU ---");[m
+[32m++        System.out.println("1. Listar eventos");[m
+[32m++        System.out.println("2. Procurar evento por nome");[m
+[32m++        System.out.println("3. Editar um evento");[m
+[32m++        System.out.println("0. Sair");[m
+[32m++        System.out.print("Escolha: ");[m
+[32m++    }[m
+[32m+ [m
+[31m -      System.out.println("Nome do Evento: ");[m
+[31m -      e.setNome(entrada.nextLine());[m
+[32m++    public void cadastraEvento() {[m
+[32m++        System.out.println("---REALIZANDO CADASTRO DE EVENTO---");[m
+[32m++        System.out.println("Nome do Evento: ");[m
+[32m++        String nome = entrada.
