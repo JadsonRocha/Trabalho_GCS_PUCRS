@@ -56,11 +56,11 @@ public class Bilheteria {
 
     public boolean registrarEntrada(String codigoIngresso) {
         for (Ingressos ingresso : ingressos) {
-            if (ingresso.getCodigo().equalsIgnoreCase(codigoIngresso)) { // Usando equalsIgnoreCase da 'dev'
-                if (ingresso.getfoiUtilizado()) { // Usando o nome correto do método e a lógica da 'dev'
-                    return false; // Retorna false para indicar que a entrada falhou
+            if (ingresso.getCodigo().equalsIgnoreCase(codigoIngresso)) {
+                if (ingresso.getfoiUtilizado()) {
+                    return false;
                 }
-                ingresso.setfoiUtilizado(true); // Usando o nome correto do método
+                ingresso.setfoiUtilizado(true);
                 return true;
             }
         }
