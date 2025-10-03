@@ -36,7 +36,6 @@ public class Application {
                         buscarEventoPorCodigo();
                     }
                     break;
-
                 case 4:
                     gestao.listarEventos();
                     break;
