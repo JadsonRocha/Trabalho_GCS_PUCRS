@@ -76,5 +76,5 @@ public class GestaoEventos {
         ArrayList<Eventos> CopiaEventos = new ArrayList<>();
         CopiaEventos.addAll(eventos);
         return CopiaEventos;
-}
+    }
 }

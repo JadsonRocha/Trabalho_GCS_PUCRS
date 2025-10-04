@@ -51,6 +51,28 @@ public class Bilheteria {
         return true;
     }
 
+    public boolean cancelarIngresso(String nomeParticipante) {
+        for (Ingressos ingresso : ingressos) {
+            if (ingresso.getParticipante().getNome().equals(nomeParticipante)) {
+
+                if (ingresso.getfoiUtilizado()) {
+                    System.out.println("Não é possível cancelar.");
+                    return false;
+                }
+
+                ingressos.remove(ingresso);
+
+                if (ingresso.isEspecial()) {
+                    vendidosEspeciais--;
+                } else {
+                    vendidosNormais--;
+                }
+                return true;
+            }
+        }
+        System.out.println("Ingresso não encontrado.");
+        return false;
+    }
 
     public boolean registrarEntrada(String codigoIngresso) {
         for (Ingressos ingresso : ingressos) {
@@ -59,56 +81,22 @@ public class Bilheteria {
                     return false;
                 }
                 ingresso.setfoiUtilizado(true);
-                return false;
+                return true;
             }
         }
         return false;
     }
 
-    public boolean cancelarIngresso(String codigoIngresso) {
-    for (Ingressos ingresso : ingressos) {
-        if (ingresso.getCodigo().equalsIgnoreCase(codigoIngresso)) {
-            
-            if (ingresso.getfoiUtilizado()) {
-                System.out.println("Não é possível cancelar.");
-                return false;
-            }
-            
-            ingressos.remove(ingresso);
-            
-            if (ingresso.isEspecial()) {
-                vendidosEspeciais--;
-            } else {
-                vendidosNormais--;
-            }
-            return true;
+    public Participantes buscarParticipantePorNome(String nomeBuscado) {
+        String nome = nomeBuscado.toLowerCase().trim();
+        for (Participantes participante : this.participantes) {
+            String nomeCompletoLower = participante.getNome().toLowerCase();
+            if (nomeCompletoLower.contains(nome)) {
+                return participante;
             }
         }
-    System.out.println("Ingresso não encontrado.");
-    return false;
+        return null;
     }
-
-     public ArrayList<Ingressos> getIngressosUtilizados() {
-        ArrayList<Ingressos> utilizados = new ArrayList<>();
-        for (Ingressos ingresso : ingressos) {
-            if (ingresso.getfoiUtilizado()) {
-                utilizados.add(ingresso);
-            }
-        }
-        return utilizados;
-    }
-
-   
-    public ArrayList<Ingressos> getIngressosNaoUtilizados() {
-        ArrayList<Ingressos> naoUtilizados = new ArrayList<>();
-        for (Ingressos ingresso : ingressos) {
-            if (!ingresso.getfoiUtilizado()) {
-                naoUtilizados.add(ingresso);
-            }
-        }
-        return naoUtilizados;
-    }
-
 
     public int getVendidosNormais () {
         return vendidosNormais;
@@ -116,6 +104,10 @@ public class Bilheteria {
 
     public int getVendidosEspeciais () {
         return vendidosEspeciais;
+    }
+
+    public int getTotalVendidos() {
+        return vendidosNormais + vendidosEspeciais;
     }
 
     public int getMaxNormais () {
