@@ -14,7 +14,7 @@ public class Bilheteria {
     private int vendidosNormais = 0;
     private int seqTotal = 0;
 
-    public Bilheteria (Eventos evento) {
+    public Bilheteria(Eventos evento) {
         this.eventos = evento;
         this.lotacaoMax = evento.getLotacao();
         this.maxEspeciais = (int) Math.ceil(this.lotacaoMax * 0.15);
@@ -24,12 +24,12 @@ public class Bilheteria {
         this.participantes = new ArrayList<>();
     }
 
-    public void adicionarParticipante (String nome, String cpf) {
+    public void adicionarParticipante(String nome, String cpf) {
         Participantes p = new Participantes(nome, cpf);
         participantes.add(p);
     }
 
-    public boolean realizarVenda(Participantes participante, boolean especial){
+    public boolean realizarVenda(Participantes participante, boolean especial) {
         if ((vendidosNormais + vendidosEspeciais) >= lotacaoMax) return false;
 
         if (especial) {
@@ -47,7 +47,8 @@ public class Bilheteria {
         Ingressos ingresso = new Ingressos(participante, codIngresso, especial);
         ingressos.add(ingresso);
 
-        if (especial) vendidosEspeciais++; else vendidosNormais++;
+        if (especial) vendidosEspeciais++;
+        else vendidosNormais++;
         return true;
     }
 
@@ -55,7 +56,7 @@ public class Bilheteria {
         for (Ingressos ingresso : ingressos) {
             if (ingresso.getParticipante().getNome().equals(nomeParticipante)) {
 
-                if (ingresso.getfoiUtilizado()) {
+                if (ingresso.isFoiUtilizado()) {
                     System.out.println("Não é possível cancelar.");
                     return false;
                 }
@@ -77,10 +78,10 @@ public class Bilheteria {
     public boolean registrarEntrada(String codigoIngresso) {
         for (Ingressos ingresso : ingressos) {
             if (ingresso.getCodigo().equalsIgnoreCase(codigoIngresso)) {
-                if (ingresso.getfoiUtilizado()) {
+                if (ingresso.isFoiUtilizado()) {
                     return false;
                 }
-                ingresso.setfoiUtilizado(true);
+                ingresso.setFoiUtilizado(true);
                 return true;
             }
         }
@@ -98,11 +99,11 @@ public class Bilheteria {
         return null;
     }
 
-    public int getVendidosNormais () {
+    public int getVendidosNormais() {
         return vendidosNormais;
     }
 
-    public int getVendidosEspeciais () {
+    public int getVendidosEspeciais() {
         return vendidosEspeciais;
     }
 
@@ -110,15 +111,15 @@ public class Bilheteria {
         return vendidosNormais + vendidosEspeciais;
     }
 
-    public int getMaxNormais () {
+    public int getMaxNormais() {
         return maxNormais;
     }
 
-    public int getMaxEspeciais () {
+    public int getMaxEspeciais() {
         return maxEspeciais;
     }
 
-    public int getLotacaoMax () {
+    public int getLotacaoMax() {
         return lotacaoMax;
     }
 }

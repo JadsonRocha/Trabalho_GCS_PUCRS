@@ -26,15 +26,15 @@ public class Ingressos {
         return participante;
     }
 
-    public boolean getfoiUtilizado () {
+    public boolean isFoiUtilizado() {
         return foiUtilizado;
     }
 
-    public void setfoiUtilizado (boolean foiUtilizado) {
+    public void setFoiUtilizado(boolean foiUtilizado) {
         this.foiUtilizado = foiUtilizado;
     }
 
-    public void setParticipante (Participantes participante) {
+    public void setParticipante(Participantes participante) {
         this.participante = participante;
     }
 

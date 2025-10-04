@@ -9,16 +9,16 @@ public class Eventos {
     private double valorIngresso;
     private int lotacao;
     private String responsavel;
-    private Bilheteria bilheteria; // para manter o código de eventos mais enxuto e claro botei bilheteria como um atributo;
+    private Bilheteria bilheteria;
 
-    public Eventos () {
+    public Eventos() {
         this.codigo = 0;
         this.nome = "";
         this.data = "";
         this.valorIngresso = 0.0;
         this.lotacao = 0;
         this.responsavel = "";
-        this.bilheteria = new Bilheteria(this); //recebe como parametro o próprio evento
+        this.bilheteria = new Bilheteria(this);
         this.codigo = geraCodigo();
     }
 
@@ -29,13 +29,11 @@ public class Eventos {
         this.lotacao = lotacao;
         this.responsavel = responsavel;
         this.codigo = geraCodigo();
-        this.codigo = geraCodigo();
         this.bilheteria = new Bilheteria(this);
     }
 
-
     private static int geraCodigo() {
-       return contador++;
+        return contador++;
     }
 
     public int getCodigo() {
@@ -43,7 +41,6 @@ public class Eventos {
     }
 
     public String getNome() {
-
         return nome;
     }
 
@@ -90,11 +87,10 @@ public class Eventos {
     @Override
     public String toString() {
         return "Evento Cód: " + getCodigo() + "\n" +
-               "  Nome: " + getNome() + "\n" +
-               "  Data: " + getData() + "\n" +
-               "  Valor do Ingresso: R$" + getValorIngresso() + "\n" +
-               "  Lotação Máxima: " + getLotacao() + "\n" +
-               "  Responsável: " + getResponsavel() + "\n";
+                "  Nome: " + getNome() + "\n" +
+                "  Data: " + getData() + "\n" +
+                "  Valor do Ingresso: R$" + getValorIngresso() + "\n" +
+                "  Lotação Máxima: " + getLotacao() + "\n" +
+                "  Responsável: " + getResponsavel() + "\n";
     }
 }
-
