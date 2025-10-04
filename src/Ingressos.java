@@ -31,7 +31,7 @@ public class Ingressos {
     }
 
     public void setfoiUtilizado (boolean foiUtilizado) {
-        foiUtilizado = foiUtilizado;
+        this.foiUtilizado = foiUtilizado;
     }
 
     public void setParticipante (Participantes participante) {

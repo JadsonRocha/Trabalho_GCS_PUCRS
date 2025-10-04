@@ -32,8 +32,17 @@ public class Application {
                     break;
                 case 4:
                     break;
+                case 5:
+                    cancelarEvento();
+                    break;
+                case 6:
+                    cancelarIngresso();
+                    break;
                 case 0:
                     System.out.println("Sistema finalizado...");
+                    break;
+                case 7:
+                    relatorioIngressos();
                     break;
                 default:
                     System.out.println("Seleção inválida. Tente novamente.");
@@ -48,7 +57,11 @@ public class Application {
         System.out.println("[2] Listar todos os eventos");
         System.out.println("[3] Buscar Evento");
         System.out.println("[4] Gerar relatório mensal");
+        System.out.println("[5] Cancelar Evento");
+        System.out.println("[6] Cancelar Ingresso");
+        System.out.println("[7] Relatório de Ingressos por Evento");
         System.out.println("[0] Sair");
+        
     }
 
     private void cadastraEvento () {
@@ -121,6 +134,92 @@ public class Application {
                     System.out.println("opção inválida");
             }
         }
+    }
+
+    private void cancelarEvento() {
+    System.out.println("\n--- CANCELAR EVENTO ---");
+    if (gestao.listarEventos().isEmpty()) {
+        System.out.println("Não existem eventos cadastrados.");
+        return;
+    }
+    System.out.print("Informe o código do evento a ser cancelado: ");
+    int cod = entrada.nextInt();
+    entrada.nextLine();
+    gestao.removerEvento(cod);
+}
+
+private void cancelarIngresso() {
+    System.out.println("\n--- CANCELAR INGRESSO ---");
+    if (gestao.listarEventos().isEmpty()) {
+        System.out.println("Não existem eventos cadastrados.");
+        return;
+    }
+    System.out.print("Informe o código do evento: ");
+    int codEvento = entrada.nextInt();
+    entrada.nextLine();
+    Eventos evento = gestao.buscarEventoPorCodigo(codEvento);
+    if (evento == null) {
+        System.out.println("Evento não encontrado.");
+        return;
+    }
+    System.out.print("Informe o código do ingresso: ");
+    String codIngresso = entrada.nextLine();
+    Bilheteria bilheteria = evento.getBilheteria();
+    if (bilheteria.cancelarIngresso(codIngresso)) {
+        System.out.println("Ingresso cancelado com sucesso.");
+    } else {
+        System.out.println("Falha ao cancelar o ingresso.");
+    }
+}
+
+private void relatorioIngressos() {
+        System.out.println("\n--- RELATÓRIO DE INGRESSOS POR EVENTO ---");
+        
+        if (gestao.listarEventos().isEmpty()) {
+            System.out.println("Não existem eventos cadastrados.");
+            return;
+        }
+
+        System.out.print("Informe o código do evento: ");
+        int codEvento = entrada.nextInt();
+        entrada.nextLine();
+        
+        Eventos evento = gestao.buscarEventoPorCodigo(codEvento);
+        if (evento == null) {
+            System.out.println("Evento não encontrado.");
+            return;
+        }
+
+        Bilheteria bilheteria = evento.getBilheteria();
+        
+        // Ingresos utilizados
+        ArrayList<Ingressos> utilizados = bilheteria.getIngressosUtilizados();
+        System.out.println("\n--- INGRESSOS UTILIZADOS (" + utilizados.size() + ") ---");
+        if (utilizados.isEmpty()) {
+            System.out.println("Nenhum ingresso utilizado.");
+        } else {
+            for (Ingressos ingresso : utilizados) {
+                System.out.println("  " + ingresso);
+            }
+        }
+
+        // Ingresos não utilizados
+        ArrayList<Ingressos> naoUtilizados = bilheteria.getIngressosNaoUtilizados();
+        System.out.println("\n--- INGRESSOS NÃO UTILIZADOS (" + naoUtilizados.size() + ") ---");
+        if (naoUtilizados.isEmpty()) {
+            System.out.println("Nenhum ingresso não utilizado.");
+        } else {
+            for (Ingressos ingresso : naoUtilizados) {
+                System.out.println("  " + ingresso);
+            }
+        }
+
+        
+        System.out.println("\n--- RESUMO ---");
+        System.out.println("Total de ingressos vendidos: " + (utilizados.size() + naoUtilizados.size()));
+        System.out.println("Utilizados: " + utilizados.size());
+        System.out.println("Não utilizados: " + naoUtilizados.size());
+        System.out.println("Lotação máxima: " + evento.getLotacao());
     }
 
     private void popularDadosIniciais () {
