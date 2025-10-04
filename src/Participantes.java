@@ -1,3 +1,5 @@
+package src;
+
 public class Participantes {
     private String nome;
     private String cpf;
@@ -13,5 +15,10 @@ public class Participantes {
 
     public String getCpf () {
         return cpf;
+    }
+
+    @Override
+    public String toString() {
+        return "Participante: " + nome + " (CPF: " + cpf + ")";
     }
 }
